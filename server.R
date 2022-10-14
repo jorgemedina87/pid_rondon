@@ -34,7 +34,7 @@ id_campo <-bd_perfil_pozo_ %>%
 
 server <- function(input, output, session) {
 
-   source("modules/server_perfil.R", local = TRUE)
+   #source("modules/server_perfil.R", local = TRUE)
   # source("modules/server_wo_inc.R", local = TRUE)
   # source("modules/server_wo_exp.R", local = TRUE)
   # 

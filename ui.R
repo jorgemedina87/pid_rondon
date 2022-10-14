@@ -2,6 +2,11 @@
 
 library(shiny)
 library(shinydashboard)
+library(shinyWidgets)
+library(shinycssloaders)
+library(plotly)
+
+
 
 source("modules/ui_tab_perfil.R")
 

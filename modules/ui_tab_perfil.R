@@ -132,7 +132,7 @@ tab_perfil <- tabItem(tabName = "tab_perfil",
                   fluidRow(column(4,
                                   withSpinner(plotlyOutput("perf_plot_2"))),
                            column(4,
-                                  withSpinner(tableOutput("table"))),
+                                  withSpinner(tableOutput("table_1"))),
                            column(4,
                                   
                                   withSpinner(plotlyOutput("perf_plot_b3"))),

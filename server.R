@@ -15,6 +15,8 @@ library(dplyr)
 library(ggplot2)
 library(readxl)
 library(plotly)
+library (DT) # for data tables
+library(tidyr)
 
 bd_perfil_pozo_v <- read_excel(file.path("data/bd_cr_c_nf_nn.xlsx"), sheet = "Sheet1")
 bd_perfil_pozo_ <- read_excel(file.path("data/bd_perfil_pozo_.xlsx"), sheet = "Sheet1")

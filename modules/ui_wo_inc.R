@@ -1,5 +1,5 @@
 
-basic <- tabItem(tabName = "tab_basic_profile", "Basic",
+basic <- tabItem(tabName = "tab_basic_profile", "Well by Well ",
                  fluidRow(
 
     sidebarPanel(width=4,
@@ -51,7 +51,7 @@ basic <- tabItem(tabName = "tab_basic_profile", "Basic",
              column(12,
                     shiny::hr(),
                     div(title="",
-                        p(tags$b(" Paso 4. Selecciones el tipo de pozo analizar"))),
+                        p(tags$b(" Paso 3. Selecciones el tipo de pozo analizar"))),
 
 
                     div(title="", # tooltip
@@ -72,7 +72,7 @@ basic <- tabItem(tabName = "tab_basic_profile", "Basic",
                         style = "margin-top: 10px; margin-bottom: 20px;",
                         prettyRadioButtons("id_tipo_reserva",
                                            inputId = "Id039",
-                                          label= HTML("<strong>Paso 3.</strong>- Seleccione el tipo de reserva"),
+                                          label= HTML("<strong>Paso 4.</strong>- Seleccione el tipo de reserva"),
                                           choices = c('PDP',
                                                       'PRBP',
                                                       'PSP'),
@@ -117,7 +117,7 @@ basic <- tabItem(tabName = "tab_basic_profile", "Basic",
                     div(title="", # tooltip
                         style = "margin-top: 10px; margin-bottom: 20px;",
                         radioGroupButtons("id_grafi_pp",
-                                          label= HTML("<strong>Paso 4.</strong>- Seleccione qu&eacute analisis desea explorar."),
+                                          label= HTML("<strong>Paso 6.</strong>- Seleccione qu&eacute analisis desea explorar."),
                                           choices = c("Distibucion Opex"='D_opex',
                                                       "FC en Tiempo"='fc_t',
                                                       "FC Descontado"='fc_d'),
@@ -137,7 +137,7 @@ basic <- tabItem(tabName = "tab_basic_profile", "Basic",
                     div(title="", # tooltip
                         style = "margin-top: 10px; margin-bottom: 20px;",
                         radioGroupButtons("id_grafi_pp2",
-                                          label= HTML("<strong>Paso 5.</strong>- Seleccione el tipo a evaluar."),
+                                          label= HTML("<strong>Paso 7.</strong>- Seleccione el tipo a evaluar."),
                                           choices = c("Sin Socio"='sin_Socio',
                                                       "Con socio"='con_socio'),
                                           checkIcon = list(yes = icon("check")),
@@ -182,7 +182,7 @@ mainPanel(width = 8, #Main panel
 )
 )
 )
-Basic_WO<- tabItem(tabName = "tab_basic_wo_profile", "Basic",
+Basic_WO<- tabItem(tabName = "tab_basic_wo_profile", "Well by Well ",
                    fluidRow(
                    sidebarPanel(width=4,
                                 
@@ -232,7 +232,7 @@ Basic_WO<- tabItem(tabName = "tab_basic_wo_profile", "Basic",
                                 column(12,
                                        shiny::hr(),
                                        div(title="",                      
-                                           p(tags$b(" Paso 4. Selecciones el tipo de pozo analizar"))),
+                                           p(tags$b(" Paso 3. Selecciones el tipo de pozo analizar"))),
                                        
                                        
                                        div(title="", # tooltip
@@ -251,7 +251,7 @@ Basic_WO<- tabItem(tabName = "tab_basic_wo_profile", "Basic",
                                 column(12,
                                        shiny::hr(),
                                        div(title="",                      
-                                           p(tags$b(" Paso 5. Selecciones el tipo de Brent a sensibilizar."))),
+                                           p(tags$b(" Paso 4. Selecciones el tipo de Brent a sensibilizar."))),
                                        
                                        
                                        div(title="", # tooltip
@@ -275,7 +275,7 @@ Basic_WO<- tabItem(tabName = "tab_basic_wo_profile", "Basic",
                                        div(title="", # tooltip
                                            style = "margin-top: 10px; margin-bottom: 20px;", 
                                            radioGroupButtons("id_grafi_pp", 
-                                                             label= HTML("<strong>Paso 3.</strong>- Seleccione qu&eacute analisis desea explorar."), 
+                                                             label= HTML("<strong>Paso 5.</strong>- Seleccione qu&eacute analisis desea explorar."), 
                                                              choices = c("Distibucion Opex"='D_opex',
                                                                          "FC en Tiempo"='fc_t',
                                                                          "FC Descontado"='fc_d'),
@@ -295,7 +295,7 @@ Basic_WO<- tabItem(tabName = "tab_basic_wo_profile", "Basic",
                                        div(title="", # tooltip
                                            style = "margin-top: 10px; margin-bottom: 20px;", 
                                            radioGroupButtons("id_grafi_pp2", 
-                                                             label= HTML("<strong>Paso 4.</strong>- Seleccione el tipo a evaluar."), 
+                                                             label= HTML("<strong>Paso 6.</strong>- Seleccione el tipo a evaluar."), 
                                                              choices = c("Sin Socio"='sin_Socio',
                                                                          "Con socio"='con_socio'),
                                                              checkIcon = list(yes = icon("check")),
@@ -312,7 +312,7 @@ Basic_WO<- tabItem(tabName = "tab_basic_wo_profile", "Basic",
                                        div(title="", # tooltip
                                            style = "margin-top: 10px; margin-bottom: 20px;", 
                                            radioGroupButtons("id_tipo_costo", 
-                                                             label= HTML("<strong>Paso 5.</strong>- Seleccione el tipo de Costo de interes"), 
+                                                             label= HTML("<strong>Paso 7.</strong>- Seleccione el tipo de Costo de interes"), 
                                                              choices = c("Pesimista"='pesimista',
                                                                          "Probable"='probable',
                                                                          "Optimista"='optimista'),
@@ -359,7 +359,7 @@ Basic_WO<- tabItem(tabName = "tab_basic_wo_profile", "Basic",
                    )
 
 
-Basic_WO_NW <- tabItem(tabName = "tab_basic_wo_nw_profile", "Basic",
+Basic_WO_NW <- tabItem(tabName = "tab_basic_wo_nw_profile", "Well by Well ",
                  fluidRow(
                    sidebarPanel(width=4,
                                 
@@ -409,7 +409,7 @@ Basic_WO_NW <- tabItem(tabName = "tab_basic_wo_nw_profile", "Basic",
                                 column(12,
                                        shiny::hr(),
                                        div(title="",                      
-                                           p(tags$b(" Paso 4. Selecciones el tipo de pozo analizar"))),
+                                           p(tags$b(" Paso 3. Selecciones el tipo de pozo analizar"))),
                                        
                                        
                                        div(title="", # tooltip
@@ -428,7 +428,7 @@ Basic_WO_NW <- tabItem(tabName = "tab_basic_wo_nw_profile", "Basic",
                                 column(12,
                                        shiny::hr(),
                                        div(title="",                      
-                                           p(tags$b(" Paso 5. Selecciones el tipo de Brent a sensibilizar."))),
+                                           p(tags$b(" Paso 4. Selecciones el tipo de Brent a sensibilizar."))),
                                        
                                        
                                        div(title="", # tooltip
@@ -493,7 +493,7 @@ Basic_WO_NW <- tabItem(tabName = "tab_basic_wo_nw_profile", "Basic",
                                        div(title="", # tooltip
                                            style = "margin-top: 10px; margin-bottom: 20px;", 
                                            radioGroupButtons("id_grafi_pp", 
-                                                             label= HTML("<strong>Paso 3.</strong>- Seleccione qu&eacute analisis desea explorar."), 
+                                                             label= HTML("<strong>Paso 6.</strong>- Seleccione qu&eacute analisis desea explorar."), 
                                                              choices = c("Distibucion Opex"='D_opex',
                                                                          "FC en Tiempo"='fc_t',
                                                                          "FC Descontado"='fc_d'),

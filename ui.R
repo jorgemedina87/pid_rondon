@@ -39,6 +39,7 @@ library(rvest)
 
 source("modules/ui_tab_perfil.R")
 source("modules/ui_wo_inc.R")
+source("modules/ui_wo_exp.R")
 
 
 ui <- dashboardPage(
@@ -90,8 +91,12 @@ ui <- dashboardPage(
      
         basic,
       Basic_WO,
-      Basic_WO_NW 
+      Basic_WO_NW, 
 
+      VPN_tab_basic_vpn,
+      VPN_tab_basic_wo_vpn,
+      VPN_Basic_WO_NW
+      
     )
    
   )

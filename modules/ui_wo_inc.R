@@ -1,6 +1,6 @@
 
 basic <- tabItem(tabName = "tab_basic_profile", "Basic",
-         fluidRow(
+                 fluidRow(
 
     sidebarPanel(width=4,
              
@@ -8,11 +8,13 @@ basic <- tabItem(tabName = "tab_basic_profile", "Basic",
                     
                     div(title="", # tooltip
                         style = "margin-top: 10px; margin-bottom: 15px;", 
-                        radioGroupButtons("id_tipo_grafico", 
+                        checkboxGroupButtons("id_tipo_grafico", 
                                           label= HTML("<strong>Paso 1.</strong>- Seleccione qu&eacute analisis desea explorar."), 
                                           choices = c("Perfil"='Perfil',
                                                       "N pozo"='n_well',
                                                       "Sin Costo F"='sin_fijo'),
+                                          status = "danger",
+                                         
                                           checkIcon = list(yes = icon("check")),
                                           select='Perfil' ,
                                           justified = TRUE
@@ -68,14 +70,17 @@ basic <- tabItem(tabName = "tab_basic_profile", "Basic",
                     shiny::hr(),
                     div(title="", # tooltip
                         style = "margin-top: 10px; margin-bottom: 20px;",
-                        radioGroupButtons("id_tipo_reserva",
+                        prettyRadioButtons("id_tipo_reserva",
+                                           inputId = "Id039",
                                           label= HTML("<strong>Paso 3.</strong>- Seleccione el tipo de reserva"),
-                                          choices = c("PDP"='PDP',
-                                                      "PRBP"='PRBP',
-                                                      "PSP"='PSP'),
-                                          checkIcon = list(yes = icon("check")),
-                                          select='PDP' ,
-                                          justified = TRUE
+                                          choices = c('PDP',
+                                                      'PRBP',
+                                                      'PSP'),
+                                          icon = icon("check"), 
+                                          inline = TRUE, 
+                                          status = "danger",
+                                          fill = TRUE
+                                          
                         )),
                     tags$script("$(\"input:radio[name='id_tipo_reserva'][value='PDP']\").parent().css('background-color', '#FF5F00');"),
                     tags$script("$(\"input:radio[name='id_tipo_reserva'][value='PRBP']\").parent().css('background-color', '#808080');"),
@@ -177,21 +182,20 @@ mainPanel(width = 8, #Main panel
 )
 )
 )
-
 Basic_WO<- tabItem(tabName = "tab_basic_wo_profile", "Basic",
-                 fluidRow(
-                     
+                   fluidRow(
                    sidebarPanel(width=4,
                                 
                                 column(12,
                                        
                                        div(title="", # tooltip
                                            style = "margin-top: 10px; margin-bottom: 15px;", 
-                                           radioGroupButtons("id_tipo_grafico", 
+                                           checkboxGroupButtons("id_tipo_grafico", 
                                                              label= HTML("<strong>Paso 1.</strong>- Seleccione qu&eacute analisis desea explorar."), 
                                                              choices = c("Perfil"='Perfil',
                                                                          "N pozo"='n_well',
                                                                          "Sin Costo F"='sin_fijo'),
+                                                             status = "danger",
                                                              checkIcon = list(yes = icon("check")),
                                                              select='Perfil' ,
                                                              justified = TRUE
@@ -349,11 +353,11 @@ Basic_WO<- tabItem(tabName = "tab_basic_wo_profile", "Basic",
                                                      column(1)))
                                   ),
                                   
-                                  
+                   )
                                   
                      )
                    )
- )
+
 
 Basic_WO_NW <- tabItem(tabName = "tab_basic_wo_nw_profile", "Basic",
                  fluidRow(
@@ -363,11 +367,12 @@ Basic_WO_NW <- tabItem(tabName = "tab_basic_wo_nw_profile", "Basic",
                                        
                                        div(title="", # tooltip
                                            style = "margin-top: 10px; margin-bottom: 15px;", 
-                                           radioGroupButtons("id_tipo_grafico", 
+                                           checkboxGroupButtons("id_tipo_grafico", 
                                                              label= HTML("<strong>Paso 1.</strong>- Seleccione qu&eacute analisis desea explorar."), 
                                                              choices = c("Perfil"='Perfil',
                                                                          "N pozo"='n_well',
                                                                          "Sin Costo F"='sin_fijo'),
+                                                             status = "danger",
                                                              checkIcon = list(yes = icon("check")),
                                                              select='Perfil' ,
                                                              justified = TRUE

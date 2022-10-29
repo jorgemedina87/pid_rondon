@@ -6,9 +6,39 @@ library(shinyWidgets)
 library(shinycssloaders)
 library(plotly)
 
+##Packages ----
+############################.
+library(shiny)
+library(shinyBS) #modals
+library(shinythemes) # layouts for shiny
+library(dplyr) # data manipulation
+library(ggplot2) #data visualization
+library (DT) # for data tables
+library(leaflet) #javascript maps
+library(plotly) #interactive graphs
+library(shinyWidgets) # for extra widgets
+library(tibble) # rownames to column in techdoc
+library(shinyBS) #modals
+library(shinyjs)
+library(shinydashboard) #for valuebox on techdoc tab
+library(sp)
+library(lubridate) #for automated list of dates in welcome modal
+library(shinycssloaders) #for loading icons, see line below
+# it uses github version devtools::install_github("andrewsali/shinycssloaders")
+# This is to avoid issues with loading symbols behind charts and perhaps with bouncing of app
+library(rmarkdown)
+#library(flextable) #for tech document table
+library(webshot) #to download plotly charts
+library(rintrojs) # for help intros
 
+library(tidyr)
+library(stringr)
+library(purrr)
+
+library(rvest)
 
 source("modules/ui_tab_perfil.R")
+source("modules/ui_wo_inc.R")
 
 
 ui <- dashboardPage(
@@ -23,16 +53,17 @@ ui <- dashboardPage(
     br(),
     sidebarMenu(
       menuItem(HTML("<b> Profile </b>"), tabName = "tab_perfil", icon = icon("area-chart")),
-      menuItem(HTML("<b> VPN +</b>"),  icon = icon("dollar-sign"),
-               menuSubItem("Basic", tabName = "tab_basic_vpn", icon = icon("fas fa-poll-h")),
-               menuSubItem("Basic + WO", tabName = "tab_basic_wo_vpn", icon = icon("fas fa-chart-area")),
-               menuSubItem("Basic + WO + NW", tabName = "tab_basic_wo_nw_vpn", icon = icon("fas fa-file-export"))
+      
+       menuItem(HTML("<b> VPN +</b>"),  icon = icon("dollar-sign"),
+       menuSubItem("Basic", tabName = "tab_basic_vpn", icon = icon("fas fa-poll-h")),
+       menuSubItem("Basic + WO", tabName = "tab_basic_wo_vpn", icon = icon("fas fa-chart-area")),
+              menuSubItem("Basic + WO + NW", tabName = "tab_basic_wo_nw_vpn", icon = icon("fas fa-file-export"))
                ),
       menuItem(HTML("<b> Well by Well + </b>"), icon = icon("dollar-sign"),
                menuSubItem("Basic", tabName = "tab_basic_profile", icon = icon("fas fa-poll-h")),
                menuSubItem("Basic + WO", tabName = "tab_basic_wo_profile", icon = icon("fas fa-chart-area")),
                menuSubItem("Basic + WO + NW", tabName = "tab_basic_wo_nw_profile", icon = icon("fas fa-file-export"))
-               ),
+               ), 
       br(),
       br(),
       hr(),
@@ -55,11 +86,18 @@ ui <- dashboardPage(
   dashboardBody(
    
     tabItems(
-      tab_perfil
+      tab_perfil,
+     
+        basic,
+      Basic_WO,
+      Basic_WO_NW 
 
     )
    
   )
-  
-  
+
 )
+
+
+  
+

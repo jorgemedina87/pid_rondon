@@ -38,8 +38,14 @@ library(purrr)
 library(rvest)
 
 source("modules/ui_tab_perfil.R")
-source("modules/ui_wo_inc.R")
-source("modules/ui_wo_exp.R")
+#source("modules/ui_wo_inc.R")
+#source("modules/ui_wo_exp.R")
+source("modules/ui_VPN_Basic.R", local = TRUE)
+source("modules/ui_VPN_Basic_WO.R", local = TRUE)
+source("modules/ui_VPN_Basic_WO_NW.R", local = TRUE)
+source("modules/ui_Well_Well_Basic.R", local = TRUE)
+source("modules/ui_Well_Basic_WO.R", local = TRUE)
+source("modules/ui_Well_Basic_WO_NW.R", local = TRUE)
 
 
 ui <- dashboardPage(
@@ -56,14 +62,14 @@ ui <- dashboardPage(
       menuItem(HTML("<b> Profile </b>"), tabName = "tab_perfil", icon = icon("area-chart")),
       
        menuItem(HTML("<b> VPN +</b>"),  icon = icon("dollar-sign"),
-       menuSubItem("Basic", tabName = "tab_basic_vpn", icon = icon("fas fa-poll-h")),
-       menuSubItem("Basic + WO", tabName = "tab_basic_wo_vpn", icon = icon("fas fa-chart-area")),
-              menuSubItem("Basic + WO + NW", tabName = "tab_basic_wo_nw_vpn", icon = icon("fas fa-file-export"))
+       menuSubItem("Basic", tabName = "VPN_Basic", icon = icon("fas fa-poll-h")),
+       menuSubItem("Basic + WO", tabName = "VPN_Basic_WO_NW", icon = icon("fas fa-chart-area")),
+              menuSubItem("Basic + WO + NW", tabName = "VPN_Basic_WO", icon = icon("fas fa-file-export"))
                ),
       menuItem(HTML("<b> Well by Well + </b>"), icon = icon("dollar-sign"),
-               menuSubItem("Basic", tabName = "tab_basic_profile", icon = icon("fas fa-poll-h")),
-               menuSubItem("Basic + WO", tabName = "tab_basic_wo_profile", icon = icon("fas fa-chart-area")),
-               menuSubItem("Basic + WO + NW", tabName = "tab_basic_wo_nw_profile", icon = icon("fas fa-file-export"))
+               menuSubItem("Basic", tabName = "Well_Well_Basic", icon = icon("fas fa-poll-h")),
+               menuSubItem("Basic + WO", tabName = "Well_Basic_WO", icon = icon("fas fa-chart-area")),
+               menuSubItem("Basic + WO + NW", tabName = "Well_Basic_WO_NW", icon = icon("fas fa-file-export"))
                ), 
       br(),
       br(),
@@ -89,13 +95,13 @@ ui <- dashboardPage(
     tabItems(
       tab_perfil,
      
-        basic,
-      Basic_WO,
-      Basic_WO_NW, 
+      VPN_Basic,
+      VPN_Basic_WO,
+      VPN_Basic_WO_NW, 
 
-      VPN_tab_basic_vpn,
-      VPN_tab_basic_wo_vpn,
-      VPN_Basic_WO_NW
+      Well_Well_Basic,
+      Well_Basic_WO,
+      Well_Basic_WO_NW
       
     )
    

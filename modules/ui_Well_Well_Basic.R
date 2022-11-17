@@ -1,25 +1,25 @@
 
-Well_Well_Basic <- tabItem(tabName = "Well_Well_Basic", "Well by Well ",
-                 fluidRow(
+Well_Well_Basic <- tabItem(tabName = "Well_Well_Basic", 
+                 
                    
-                   sidebarPanel(width=4,
-                                
-                                column(12,
-                                       
-                                       div(title="", # tooltip
-                                           style = "margin-top: 10px; margin-bottom: 15px;", 
-                                           checkboxGroupButtons("id_tipo_grafico", 
-                                                                label= HTML("<strong>Paso 1.</strong>- Seleccione qu&eacute analisis desea explorar."), 
-                                                                choices = c("Perfil"='Perfil',
-                                                                            "N pozo"='n_well',
-                                                                            "Sin Costo F"='sin_fijo'),
-                                                                status = "danger",
-                                                                
-                                                                checkIcon = list(yes = icon("check")),
-                                                                select='Perfil' ,
-                                                                justified = TRUE
-                                           )),
-                                       
+                           sidebarPanel(width=4,
+                                        column(6,
+                                               actionButton("help_pozo",label="ayuda", icon= icon('question-circle'), class ="down")),
+                                        column(6,
+                                               actionButton("defs_pozo", label=HTML("Definici&oacuten"), icon= icon('info'), class ="down")),
+                                        column(12,
+                                               shiny::hr(),
+                                               div(title="", # tooltip
+                                                   style = "margin-top: 10px; margin-bottom: 15px;", 
+                                                   radioGroupButtons("id_tipo_grafico", 
+                                                                     label= HTML("<strong>Paso 1.</strong>- Seleccione qu&eacute analisis desea explorar."), 
+                                                                     choices = c("Perfil"='Perfil',
+                                                                                 "N pozo"='n_well',
+                                                                                 "Sin Costo F"='sin_fijo'),
+                                                                     checkIcon = list(yes = icon("check")),
+                                                                     select='Perfil' ,
+                                                                     justified = TRUE
+                                                   )),
                                        tags$script("$(\"input:radio[name='id_tipo_grafico'][value='Perfil']\").parent().css('background-color', '#F7DB17');"),
                                        tags$script("$(\"input:radio[name='id_tipo_grafico'][value='n_well']\").parent().css('background-color', '#CCD32A');"),
                                        tags$script("$(\"input:radio[name='id_tipo_grafico'][value='sin_fijo']\").parent().css('background-color', '#004236');"),
@@ -70,16 +70,14 @@ Well_Well_Basic <- tabItem(tabName = "Well_Well_Basic", "Well by Well ",
                                        shiny::hr(),
                                        div(title="", # tooltip
                                            style = "margin-top: 10px; margin-bottom: 20px;",
-                                           prettyRadioButtons("id_tipo_reserva",
-                                                              inputId = "Id039",
-                                                              label= HTML("<strong>Paso 4.</strong>- Seleccione el tipo de reserva"),
-                                                              choices = c('PDP',
-                                                                          'PRBP',
-                                                                          'PSP'),
-                                                              icon = icon("check"), 
-                                                              inline = TRUE, 
-                                                              status = "danger",
-                                                              fill = TRUE
+                                           radioGroupButtons("id_tipo_reserva", 
+                                                             label= HTML("<strong>Paso 5.</strong>- Seleccione el tipo de reserva"), 
+                                                             choices = c("PDP"='PDP',
+                                                                         "PRBP"='PRBP',
+                                                                         "PSP"='PSP'),
+                                                             checkIcon = list(yes = icon("check")),
+                                                             select='PDP' ,
+                                                             justified = TRUE
                                                               
                                            )),
                                        tags$script("$(\"input:radio[name='id_tipo_reserva'][value='PDP']\").parent().css('background-color', '#FF5F00');"),
@@ -152,33 +150,37 @@ Well_Well_Basic <- tabItem(tabName = "Well_Well_Basic", "Well by Well ",
                                 
                                 
                                 
-                                #              column(12,
-                                #                     shiny::hr(),
-                                #                     div(tags$b("Paso 5. Descarga de la base de dato y el grafico")),
-                                #                     downloadButton('download_pozo', 'Download data', class = "down"),
-                                #                     savechart_button('download_pozo', 'Save chart',  class = "down", disabled=TRUE))
-                                # 
-                                # 
-                                # ),
+                                             column(12,
+                                                    shiny::hr(),
+                                                     div(tags$b("Paso 5. Descarga de la base de dato y el grafico")),
+                                                    downloadButton('download_pozo', 'Download data', class = "down"),
+                                                    #savechart_button('download_pozo', 'Save chart',  class = "down", disabled=TRUE))
                                 
                                 
-                                mainPanel(width = 8, #Main panel
-                                          
-                                          fluidRow(
-                                            column(3,infoBoxOutput("users_vpn1p",width = 12)),
-                                            column(3,infoBoxOutput("users_vpn2p",width = 12)),
-                                            column(3,infoBoxOutput("users_vpn3p",width = 12))
-                                          ),
-                                          column(12, align="center", #legend
-                                                 style= "padding-bottom: 40px;",
-                                                 p(column(1),
-                                                   column(2, img(src="quintile1.png", height = "16px"), "1 - VPN Positivo"),
-                                                   column(1, img(src="quintile2.png", height = "16px"), "2 - VPN Negativo"),
-                                                   column(1)))
-                                ),
-                                
-                                
-                                
+                                 ),
+
+                   ),
+                   mainPanel(width = 8, #Main panel
+                             bsModal("mod_defs_pozo", HTML("Definici&oacuten"), "defs_pozo", htmlOutput('defs_text_pozo')),
+                             fluidRow(
+                               column(3,infoBoxOutput("users_vpn1p",width = 12)),
+                               column(3,infoBoxOutput("users_vpn2p",width = 12)),
+                               column(3,infoBoxOutput("users_vpn3p",width = 12))
+                             ),
+                             h4(textOutput("title_well"), style="color: black; text-align: left"),
+                             h5(textOutput("subtitle_Well"), style="color: black; text-align: left"),
+                             withSpinner(plotlyOutput("vpn_pozo_basica")),
+                             conditionalPanel(condition = "input.v_dist_pozo == false",
+                                              
+                                              column(12, align="center", #legend
+                                                     style= "padding-bottom: 40px;",
+                                                     p(column(1),
+                                                       column(2, img(src="quintile1.png", height = "16px"), "1 - VPN Positivo"), 
+                                                       column(1, img(src="quintile2.png", height = "16px"), "2 - VPN Negativo"),
+                                                       column(1)))
+                             ),
+                             
+                             DT::dataTableOutput("table_vpn_t_p")
+                             
                    )
-                 )
 )

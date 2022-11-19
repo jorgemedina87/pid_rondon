@@ -1,13 +1,11 @@
 
-
+##Packages ----
+############################.
 library(shiny)
 library(shinydashboard)
 library(shinyWidgets)
 library(shinycssloaders)
 library(plotly)
-
-##Packages ----
-############################.
 library(shiny)
 library(shinyBS) #modals
 library(shinythemes) # layouts for shiny
@@ -24,17 +22,12 @@ library(shinydashboard) #for valuebox on techdoc tab
 library(sp)
 library(lubridate) #for automated list of dates in welcome modal
 library(shinycssloaders) #for loading icons, see line below
-# it uses github version devtools::install_github("andrewsali/shinycssloaders")
-# This is to avoid issues with loading symbols behind charts and perhaps with bouncing of app
 library(rmarkdown)
-#library(flextable) #for tech document table
 library(webshot) #to download plotly charts
 library(rintrojs) # for help intros
-
 library(tidyr)
 library(stringr)
 library(purrr)
-
 library(rvest)
 
 source("modules/ui_tab_perfil.R")
@@ -44,7 +37,7 @@ source("modules/ui_tab_perfil.R")
 #source("modules/ui_VPN_Basic_WO.R", local = TRUE)
 #source("modules/ui_VPN_Basic_WO_NW.R", local = TRUE)
 source("modules/ui_Well_Well_Basic.R", local = TRUE)
-#source("modules/ui_Well_Basic_WO.R", local = TRUE)
+source("modules/ui_Well_Basic_WO.R", local = TRUE)
 #source("modules/ui_Well_Basic_WO_NW.R", local = TRUE)
 
 
@@ -62,12 +55,12 @@ ui <- dashboardPage(
       menuItem(HTML("<b> Profile </b>"), tabName = "tab_perfil", icon = icon("area-chart")),
       
        menuItem(HTML("<b> VPN +</b>"),  icon = icon("dollar-sign"),
-       menuSubItem("Basic", tabName = "VPN_Basic", icon = icon("fas fa-poll-h")),
+       menuSubItem("Basic", tabName = "VPN_Basic", icon = icon("fas fa-chart-area")),
        menuSubItem("Basic + WO", tabName = "VPN_Basic_WO_NW", icon = icon("fas fa-chart-area")),
               menuSubItem("Basic + WO + NW", tabName = "VPN_Basic_WO", icon = icon("fas fa-file-export"))
                ),
       menuItem(HTML("<b> Well by Well + </b>"), icon = icon("dollar-sign"),
-               menuSubItem("Basic", tabName = "Well_Well_Basic", icon = icon("fas fa-poll-h")),
+               menuSubItem("Basic", tabName = "Well_Well_Basic", icon = icon("fas fa-chart-area")),
                menuSubItem("Basic + WO", tabName = "Well_Basic_WO", icon = icon("fas fa-chart-area")),
                menuSubItem("Basic + WO + NW", tabName = "Well_Basic_WO_NW", icon = icon("fas fa-file-export"))
                ), 
@@ -99,8 +92,8 @@ ui <- dashboardPage(
       #VPN_Basic_WO,
       #VPN_Basic_WO_NW, 
 
-      Well_Well_Basic
-      #Well_Basic_WO,
+      Well_Well_Basic,
+      Well_Basic_WO
       #Well_Basic_WO_NW
       
     )

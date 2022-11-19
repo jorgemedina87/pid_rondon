@@ -26,6 +26,11 @@ bd_perfil_pozo_ <- read_excel(file.path("data/bd_perfil_pozo_.xlsx"), sheet = "S
 bd_prueba_c <-  read.csv(file.path("data/bd_prueba_b_pp.csv"))
 bd_prueba_fc <- read.csv(file.path("data/bd_fc.csv"))
 
+bd_prueba_bi_bw <-read.csv(file.path("data/bd_prueba_bi_bw.csv"))
+#bd_fc_bi_bw <- read.csv(file.path("data/bd_fc_bi_bw.csv"))
+
+names(bd_prueba_bi_bw)
+
 
 id_campo <-bd_perfil_pozo_ %>%
   select(well,CAMPO)%>%
@@ -45,7 +50,7 @@ server <- function(input, output, session) {
   #source("modules/server_VPN_Basic_WO.R", local = TRUE)
   #source("modules/server_VPN_Basic_WO_NW.R", local = TRUE)
   source("modules/server_Well_Well_Basic.R", local = TRUE)
-  #source("modules/server_Well_Basic_WO.R", local = TRUE)
+  source("modules/server_Well_Basic_WO.R", local = TRUE)
   #source("modules/server_Well_Basic_WO_NW.R", local = TRUE)
 }
 

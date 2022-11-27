@@ -35,7 +35,7 @@ well_data <- reactive({
   
   if (input$v_dist_pozo==FALSE){
     
-    bd_eco <-bd_prueba_c %>%
+    bd_eco <-well_basic %>%
       dplyr::filter(campo==input$id_tipo_campo)%>%
       dplyr::filter(D_Dec==input$id_tipo_grafico)%>%
       dplyr::filter(E_Brent==input$id_brent_p)%>%
@@ -47,7 +47,7 @@ well_data <- reactive({
     
     
     
-    bd_eco <-bd_prueba_c %>%
+    bd_eco <-well_basic %>%
       dplyr::filter(campo==input$id_tipo_campo)%>%
       dplyr::filter(D_Dec==input$id_tipo_grafico)%>%
       dplyr::filter(E_Brent==input$id_brent_p)%>%

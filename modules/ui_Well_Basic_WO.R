@@ -83,8 +83,8 @@ Well_Basic_WO <- tabItem(tabName = "Well_Basic_WO",
                                                  )),
                                              
                                              tags$script("$(\"input:radio[name='id_FC2'][value='D_opex']\").parent().css('background-color', '#F7DB17');"),
-                                             tags$script("$(\"input:radio[name='id_FC1'][value='fc_t']\").parent().css('background-color', '#CCD32A');"),
-                                             tags$script("$(\"input:radio[name='id_FC1'][value='fc_d']\").parent().css('background-color', '#004236');"),
+                                             tags$script("$(\"input:radio[name='id_FC2'][value='fc_t']\").parent().css('background-color', '#CCD32A');"),
+                                             tags$script("$(\"input:radio[name='id_FC2'][value='fc_d']\").parent().css('background-color', '#004236');"),
                                              
                                       ),
                                       

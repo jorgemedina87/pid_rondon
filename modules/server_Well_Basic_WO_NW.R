@@ -1,3 +1,35 @@
+
+observe({
+  
+  
+  if(input$v_dist_pozo3 == FALSE){
+    
+    t_categoria <-0
+    
+    
+  }else {
+    
+    
+    bd_e_a <-id_campo %>%
+      dplyr::filter(CAMPO==input$id_tipo_campo)
+    
+    
+    t_categoria <-unique(bd_e_a$well)
+    
+    
+    
+  }
+  
+  
+  
+  updateSelectInput(session, "tipo_well", choices =t_categoria)
+  
+  
+}) 
+
+
+
+
 #### pozo wn
 
 well_data_wn <- reactive ({
@@ -5,19 +37,19 @@ well_data_wn <- reactive ({
   if (input$v_dist_pozo3==FALSE){
     
     bd_eco <-bd_prueba_bi_bw_nw %>%
-      dplyr::filter(campo==input$id_campo_nw)%>%
-      dplyr::filter(Socio==input$id_socio2)%>%
-      dplyr::filter(tipo_costo==input$id_costo_nw)%>%
-      dplyr::filter(E_Brent==input$id_brent_nw)
+      dplyr::filter(campo==input$id_tipo_campo)%>%
+      dplyr::filter(Socio==input$id_socio3)%>%
+      dplyr::filter(tipo_costo==input$id_tipo_costo2)%>%
+      dplyr::filter(E_Brent==input$id_brent3)
     
   } else {
     
     bd_eco <-bd_prueba_bi_bw_nw %>%
-      dplyr::filter(campo==input$id_campo_nw)%>%
-      dplyr::filter(Socio==input$id_socio2)%>%
-      dplyr::filter(E_Brent==input$id_brent_nw)%>%
-      dplyr::filter(tipo_costo==input$id_costo_nw)%>%
-      dplyr::filter(well==input$tipo_well_WN)
+      dplyr::filter(campo==input$id_tipo_campo)%>%
+      dplyr::filter(Socio==input$id_socio3)%>%
+      dplyr::filter(E_Brent==input$id_brent3)%>%
+      dplyr::filter(tipo_costo==input$id_tipo_costo2)%>%
+      dplyr::filter(well==input$tipo_well)
     
     
   }
@@ -48,7 +80,7 @@ plot_well_chart_wn <- function() {
              showlegend = FALSE)
     
     
-  }else if (input$v_dist_pozo3==TRUE & input$id_FC_NW=="D_opex"){
+  }else if (input$v_dist_pozo3==TRUE & input$id_FC3=="D_opex"){
     
     
     
@@ -79,7 +111,7 @@ plot_well_chart_wn <- function() {
     fig
     
     
-  }else if (input$v_dist_pozo3==TRUE & input$id_FC_NW=="fc_t"){
+  }else if (input$v_dist_pozo3==TRUE & input$id_FC3=="fc_t"){
     
     
     bd_eco <-data.frame(well_data_wn())%>%
@@ -118,14 +150,14 @@ plot_well_chart_wn <- function() {
              showlegend = TRUE)
     
     
-  }else if (input$v_dist_pozo3==TRUE & input$id_FC_NW=="fc_d"){
+  }else if (input$v_dist_pozo3==TRUE & input$id_FC3=="fc_d"){
     
     
     
     fig <- bd_fc_bi_bw_nw %>%
       tidyr::gather(year,Valor,8:length(bd_fc_bi_bw_nw)) %>%
-      dplyr::filter(E_Brent==input$id_brent_nw)%>%
-      dplyr::filter(well==input$tipo_well_WN)%>%
+      dplyr::filter(E_Brent==input$id_brent3)%>%
+      dplyr::filter(well==input$tipo_well)%>%
       dplyr::mutate(Valor = as.numeric(Valor))%>%
       plot_ly(x = ~year, y = ~Valor, type = 'scatter', mode = 'lines', color=~well, colors= "darkgreen")
     
@@ -149,13 +181,13 @@ plot_well_chart_wn <- function() {
 output$vpn_pozo_nw <- renderPlotly({ plot_well_chart_wn() })
 
 
-output$table_Well_wn <- DT::renderDataTable({
+output$table_well_nw <- DT::renderDataTable({
   
   bd_f<-data.frame(well_data_wn())%>%
-    dplyr::select(well,VPN_Total,opex_Total,LE_year_T,volumen_T_LE,lc_T,dc_T) %>%
+    dplyr::select(well,VPN_Total,opex_T,LE_year_T,volumen_T_LE,lc_T,dc_T) %>%
     dplyr::group_by(well)%>%
     dplyr::summarise(VPN=round(quantile(VPN_Total,0.5)/1000,1),
-                     Opex= round(quantile(opex_Total,0.5)/1000,1),
+                     Opex= round(quantile(opex_T,0.5)/1000,1),
                      LEyear=round(quantile(LE_year_T,0.5),0),
                      VOLLE=round(quantile(volumen_T_LE,0.5),1),
                      LC=round(quantile(lc_T,0.5),1),
@@ -199,7 +231,8 @@ output$table_Well_wn <- DT::renderDataTable({
   
 })
 
-output$users_vpn1wn<- renderInfoBox({ 
+
+output$users_well1_nw<- renderInfoBox({ 
   
   bd_f<-data.frame(well_data_wn())%>%
     dplyr::summarise(VPN=sum(VPN_Total))
@@ -218,10 +251,10 @@ output$users_vpn1wn<- renderInfoBox({
   
 })
 
-output$users_vpn2wn<- renderInfoBox({ 
+output$users_well2_nw<- renderInfoBox({ 
   
   bd_f<-data.frame(well_data_wn())%>%
-    dplyr::summarise(opex=sum(opex_Total))
+    dplyr::summarise(opex=sum(opex_I))
   
   c=round(as.numeric(bd_f$opex)/1000,2)
   
@@ -239,7 +272,7 @@ output$users_vpn2wn<- renderInfoBox({
   
 })
 
-output$users_vpn3wn<- renderInfoBox({ 
+output$users_well3_nw<- renderInfoBox({ 
   
   bd_f<-data.frame(well_data_wn())%>%
     dplyr::summarise(volumen_T_LE=sum(volumen_T_LE))
@@ -257,6 +290,29 @@ output$users_vpn3wn<- renderInfoBox({
   
   
 })
+
+
+
+
+###############################################.
+## Downloads ----
+###############################################.
+#Downloading data
+well_csv <- reactive({ format_csv(well_data_wn()) })
+
+output$download_trend <- downloadHandler(filename =  'well_data.csv',
+                                         content = function(file) {write.csv(well_csv(), file, row.names=FALSE)})
+
+# Downloading chart  
+output$download_trendplot <- downloadHandler(
+  filename = 'well.png',
+  content = function(file){
+    export(p = plot_well_chart_wn()() %>% 
+             layout( margin = list(t = 140)), 
+           file = file, zoom = 3)
+  })
+
+##bi
 
 
 

@@ -56,8 +56,8 @@ server <- function(input, output, session) {
   #source("modules/server_VPN_Basic_WO.R", local = TRUE)
   #source("modules/server_VPN_Basic_WO_NW.R", local = TRUE)
   #source("modules/server_Well_Well_Basic.R", local = TRUE)
-  source("modules/server_Well_Basic_WO.R", local = TRUE)
-  #source("modules/server_Well_Basic_WO_NW.R", local = TRUE)
+  #source("modules/server_Well_Basic_WO.R", local = TRUE)
+  source("modules/server_Well_Basic_WO_NW.R", local = TRUE)
 }
 
 

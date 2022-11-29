@@ -10,8 +10,8 @@ observe({
   }else {
     
     
-    bd_e_a <-id_campo %>%
-      dplyr::filter(CAMPO==input$id_tipo_campo)
+    bd_e_a <- bd_prueba_bi_bw %>%
+                dplyr::filter(campo == input$id_tipo_campo_wo)
     
     
     t_categoria <-unique(bd_e_a$well)
@@ -22,7 +22,7 @@ observe({
   
   
   
-  updateSelectInput(session, "tipo_well", choices =t_categoria)
+  updateSelectInput(session, "tipo_well_wo", choices = t_categoria)
   
   
 }) 
@@ -30,22 +30,26 @@ observe({
 
 well_data_wo <- reactive ({
   
-  if (input$v_dist_pozo2==FALSE){
+  if (input$v_dist_pozo2 == FALSE){
     
-    bd_eco <-bd_prueba_bi_bw %>%
-      dplyr::filter(campo==input$id_tipo_campo)%>%
-      dplyr::filter(Socio==input$id_socio2)%>%
-      dplyr::filter(E_Brent==input$id_brent2)%>%
-      dplyr::filter(tipo_costo==input$id_tipo_costo)
+    bd_eco <- bd_prueba_bi_bw %>%
+                dplyr::filter(campo == input$id_tipo_campo_wo)%>%
+                dplyr::filter(Socio == input$id_socio2)%>%
+                dplyr::filter(E_Brent == input$id_brent2)%>%
+                dplyr::filter(tipo_costo == input$id_tipo_costo_wo) %>%
+                dplyr::filter(P_D == 0.0) %>%
+                return()
     
   } else {
     
     bd_eco <-bd_prueba_bi_bw %>%
-      dplyr::filter(campo==input$id_tipo_campo)%>%
-      dplyr::filter(Socio==input$id_socio2)%>%
-      dplyr::filter(E_Brent==input$id_brent2)%>%
-      dplyr::filter(tipo_costo==input$id_tipo_costo)%>%
-      dplyr::filter(well==input$tipo_well)
+                dplyr::filter(campo == input$id_tipo_campo_wo) %>%
+                dplyr::filter(Socio == input$id_socio2) %>%
+                dplyr::filter(E_Brent == input$id_brent2) %>%
+                dplyr::filter(tipo_costo == input$id_tipo_costo_wo) %>%
+                dplyr::filter(well == input$tipo_well_wo)   %>%
+                dplyr::filter(P_D == 0.0) %>%
+                return()
     
     
   }
@@ -152,9 +156,8 @@ plot_well_chart_wo <- function() {
     
     fig <- bd_prueba_fc_v %>%
       tidyr::gather(year,Valor,8:length(bd_prueba_fc_v)) %>%
-      dplyr::filter(D_Dec==input$id_tipo_grafico)%>%
       dplyr::filter(E_Brent==input$id_brent_p)%>%
-      dplyr::filter(well==input$tipo_well)%>%
+      dplyr::filter(well==input$tipo_well_wo)%>%
       dplyr::mutate(Valor = as.numeric(Valor))%>%
       plot_ly(x = ~year, y = ~Valor, type = 'scatter', mode = 'lines', color=~well, colors= "darkgreen")
     
@@ -230,10 +233,10 @@ output$table_well_wo <- DT::renderDataTable({
 
 output$users_well1<- renderInfoBox({ 
   
-  bd_f<-data.frame(well_data_wo())%>%
-    dplyr::summarise(VPN=sum(VPN_Total))
+  bd_f<-data.frame(well_data_wo()) %>%
+              dplyr::summarise(VPN = sum(VPN_Total))
   
-  c=round(as.numeric(bd_f$VPN)/1000,2)
+  c=round(as.numeric(bd_f$VPN) / 1000, 2)
   
   
   infoBox(

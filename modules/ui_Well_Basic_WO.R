@@ -1,16 +1,10 @@
 Well_Basic_WO <- tabItem(tabName = "Well_Basic_WO", 
-                           
-                           
                          sidebarPanel(width=4,
-                                      column(6,
-                                             actionButton("help_pozo",label="ayuda", icon= icon('question-circle'), class ="down")),
-                                      column(6,
-                                             actionButton("defs_pozo", label=HTML("Definici&oacuten"), icon= icon('info'), class ="down")),
-                                                                           column(12,
+                                      column(12,
                                              shiny::hr(),
                                              div(title="", # tooltip
                                                  style = "margin-top: 10px; margin-bottom: 20px;",
-                                                 radioGroupButtons("id_tipo_campo",
+                                                 radioGroupButtons("id_tipo_campo_wo",
                                                                    label= HTML("<strong>Paso 1.</strong>- Seleccione el tipo de Campo de interes"),
                                                                    choices = c("RONDON"='CANO_RONDON',
                                                                                "CARICARE"='CARICARE'),
@@ -19,8 +13,8 @@ Well_Basic_WO <- tabItem(tabName = "Well_Basic_WO",
                                                                    justified = TRUE
                                                  )),
                                              
-                                             tags$script("$(\"input:radio[name='id_tipo_campo'][value='CANO_RONDON']\").parent().css('background-color', '#FF5F00');"),
-                                             tags$script("$(\"input:radio[name='id_tipo_campo'][value='CARICARE']\").parent().css('background-color', '#808080');"),
+                                             tags$script("$(\"input:radio[name='id_tipo_campo_wo'][value='CANO_RONDON']\").parent().css('background-color', '#FF5F00');"),
+                                             tags$script("$(\"input:radio[name='id_tipo_campo_wo'][value='CARICARE']\").parent().css('background-color', '#808080');"),
                                              
                                              
                                       ),
@@ -37,7 +31,7 @@ Well_Basic_WO <- tabItem(tabName = "Well_Basic_WO",
                                                  awesomeCheckbox(inputId = "v_dist_pozo2", label = "Pozo", value = FALSE,status="success")),
                                              
                                              conditionalPanel(condition = "input.v_dist_pozo2 == true",
-                                                              selectInput(inputId = "tipo_well", label = strong(""),
+                                                              selectInput(inputId = "tipo_well_wo", label = strong(""),
                                                                           choices = "",
                                                                           selected = "")
                                                               
@@ -53,12 +47,12 @@ Well_Basic_WO <- tabItem(tabName = "Well_Basic_WO",
                                              
                                              
                                              div(title="", # tooltip
-                                                 awesomeCheckbox(inputId = "v_dist_brent_vpn_p", label = "Brent", value = FALSE,status="success")),
+                                                 awesomeCheckbox(inputId = "v_dist_brent_vpn_p_wo", label = "Brent", value = FALSE,status="success")),
                                              
                                              tags$style(HTML(".js-irs-1 .irs-single, .js-irs-1 .irs-bar-edge, .js-irs-1 .irs-bar {background: green}")),
                                              
                                              
-                                             conditionalPanel(condition = "input.v_dist_brent_vpn_p == true",
+                                             conditionalPanel(condition = "input.v_dist_brent_vpn_p_wo == true",
                                                               sliderInput(inputId ="id_brent2",label = strong(""), 40,100,50,step=10),
                                                               HTML("")
                                                               
@@ -110,7 +104,7 @@ Well_Basic_WO <- tabItem(tabName = "Well_Basic_WO",
                                              shiny::hr(),
                                              div(title="", # tooltip
                                                  style = "margin-top: 10px; margin-bottom: 20px;", 
-                                                 radioGroupButtons("id_tipo_costo", 
+                                                 radioGroupButtons("id_tipo_costo_wo", 
                                                                    label= HTML("<strong>Paso 6.</strong>- Seleccione el tipo de Costo de interes"), 
                                                                    choices = c("Pesimista"='pesimista',
                                                                                "Probable"='probable',
@@ -122,32 +116,22 @@ Well_Basic_WO <- tabItem(tabName = "Well_Basic_WO",
                                              
                                              
                                              
-                                             tags$script("$(\"input:radio[name='id_tipo_costo'][value='pesimista']\").parent().css('background-color', '#FF5F00');"),
-                                             tags$script("$(\"input:radio[name='id_tipo_costo'][value='probable']\").parent().css('background-color', '#808080');"),
-                                             tags$script("$(\"input:radio[name='id_tipo_costo'][value='optimista']\").parent().css('background-color', '#808080');"),
+                                             tags$script("$(\"input:radio[name='id_tipo_costo_wo'][value='pesimista']\").parent().css('background-color', '#FF5F00');"),
+                                             tags$script("$(\"input:radio[name='id_tipo_costo_wo'][value='probable']\").parent().css('background-color', '#808080');"),
+                                             tags$script("$(\"input:radio[name='id_tipo_costo_wo'][value='optimista']\").parent().css('background-color', '#808080');"),
                                              
                                       ),
-                                      
-                                      column(12,
-                                             shiny::hr(),
-                                             div(tags$b("Paso 5. Descarga de la base de dato y el grafico")),
-                                             downloadButton('download_pozo', 'Download data', class = "down"),
-                                             #savechart_button('download_pozo', 'Save chart',  class = "down", disabled=TRUE))
-                                             
-                                             
-                                      ),
-                                      
                          ),
-                         mainPanel(width = 8, #Main panel
-                                   bsModal("mod_defs_pozo", HTML("Definici&oacuten"), "defs_pozo", htmlOutput('defs_text_pozo')),
+                         mainPanel(width = 8,
                                    fluidRow(
                                      column(3,infoBoxOutput("users_well1",width = 12)),
                                      column(3,infoBoxOutput("users_well2",width = 12)),
                                      column(3,infoBoxOutput("users_well3",width = 12))
                                    ),
-                                   h4(textOutput("title_well"), style="color: black; text-align: left"),
-                                   h5(textOutput("subtitle_Well"), style="color: black; text-align: left"),
+                                   h4(textOutput("title_well_wo"), style="color: black; text-align: left"),
+                                   h5(textOutput("subtitle_Well_wo"), style="color: black; text-align: left"),
                                    withSpinner(plotlyOutput("vpn_pozo_wo")),
+                                   
                                    conditionalPanel(condition = "input.v_dist_pozo2 == false",
                                                     
                                                     column(12, align="center", #legend

@@ -3,10 +3,6 @@ Well_Well_Basic <- tabItem(tabName = "Well_Well_Basic",
                  
                    
                            sidebarPanel(width=4,
-                                        column(6,
-                                               actionButton("help_pozo",label="ayuda", icon= icon('question-circle'), class ="down")),
-                                        column(6,
-                                               actionButton("defs_pozo", label=HTML("Definici&oacuten"), icon= icon('info'), class ="down")),
                                         column(12,
                                                shiny::hr(),
                                                div(title="", # tooltip
@@ -33,14 +29,14 @@ Well_Well_Basic <- tabItem(tabName = "Well_Well_Basic",
                                            style = "margin-top: 10px; margin-bottom: 20px;",
                                            radioGroupButtons("id_tipo_campo",
                                                              label= HTML("<strong>Paso 2.</strong>- Seleccione el tipo de Campo de interes"),
-                                                             choices = c("RONDON"='CANO_RONDON',
+                                                             choices = c("RONDON"='RONDON',
                                                                          "CARICARE"='CARICARE'),
                                                              checkIcon = list(yes = icon("check")),
                                                              select='CARICARE' ,
                                                              justified = TRUE
                                            )),
                                        
-                                       tags$script("$(\"input:radio[name='id_tipo_campo'][value='CANO_RONDON']\").parent().css('background-color', '#FF5F00');"),
+                                       tags$script("$(\"input:radio[name='id_tipo_campo'][value='RONDON']\").parent().css('background-color', '#FF5F00');"),
                                        tags$script("$(\"input:radio[name='id_tipo_campo'][value='CARICARE']\").parent().css('background-color', '#808080');"),
                                        
                                        
@@ -147,17 +143,6 @@ Well_Well_Basic <- tabItem(tabName = "Well_Well_Basic",
                                        tags$script("$(\"input:radio[name='id_socio1'][value='con_socio']\").parent().css('background-color', '#CCD32A');"),
                                        
                                 ),
-                                
-                                
-                                
-                                             column(12,
-                                                    shiny::hr(),
-                                                     div(tags$b("Paso 5. Descarga de la base de dato y el grafico")),
-                                                    downloadButton('download_pozo', 'Download data', class = "down"),
-                                                    #savechart_button('download_pozo', 'Save chart',  class = "down", disabled=TRUE))
-                                
-                                
-                                 ),
 
                    ),
                    mainPanel(width = 8, #Main panel

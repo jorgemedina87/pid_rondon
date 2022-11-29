@@ -11,7 +11,7 @@ Well_Well_Basic <- tabItem(tabName = "Well_Well_Basic",
                                                shiny::hr(),
                                                div(title="", # tooltip
                                                    style = "margin-top: 10px; margin-bottom: 15px;", 
-                                                   radioGroupButtons("id_tipo_grafico", 
+                                                   radioGroupButtons("id_D_Dec", 
                                                                      label= HTML("<strong>Paso 1.</strong>- Seleccione qu&eacute analisis desea explorar."), 
                                                                      choices = c("Perfil"='Perfil',
                                                                                  "N pozo"='n_well',
@@ -20,9 +20,9 @@ Well_Well_Basic <- tabItem(tabName = "Well_Well_Basic",
                                                                      select='Perfil' ,
                                                                      justified = TRUE
                                                    )),
-                                       tags$script("$(\"input:radio[name='id_tipo_grafico'][value='Perfil']\").parent().css('background-color', '#F7DB17');"),
-                                       tags$script("$(\"input:radio[name='id_tipo_grafico'][value='n_well']\").parent().css('background-color', '#CCD32A');"),
-                                       tags$script("$(\"input:radio[name='id_tipo_grafico'][value='sin_fijo']\").parent().css('background-color', '#004236');"),
+                                       tags$script("$(\"input:radio[name='id_D_Dec'][value='Perfil']\").parent().css('background-color', '#F7DB17');"),
+                                       tags$script("$(\"input:radio[name='id_D_Dec'][value='n_well']\").parent().css('background-color', '#CCD32A');"),
+                                       tags$script("$(\"input:radio[name='id_D_Dec'][value='sin_fijo']\").parent().css('background-color', '#004236');"),
                                        
                                 ),
                                 
@@ -70,8 +70,8 @@ Well_Well_Basic <- tabItem(tabName = "Well_Well_Basic",
                                        shiny::hr(),
                                        div(title="", # tooltip
                                            style = "margin-top: 10px; margin-bottom: 20px;",
-                                           radioGroupButtons("id_tipo_reserva", 
-                                                             label= HTML("<strong>Paso 5.</strong>- Seleccione el tipo de reserva"), 
+                                           radioGroupButtons("id_tipo_reserva1", 
+                                                             label= HTML("<strong>Paso 4.</strong>- Seleccione el tipo de reserva"), 
                                                              choices = c("PDP"='PDP',
                                                                          "PRBP"='PRBP',
                                                                          "PSP"='PSP'),
@@ -80,9 +80,9 @@ Well_Well_Basic <- tabItem(tabName = "Well_Well_Basic",
                                                              justified = TRUE
                                                               
                                            )),
-                                       tags$script("$(\"input:radio[name='id_tipo_reserva'][value='PDP']\").parent().css('background-color', '#FF5F00');"),
-                                       tags$script("$(\"input:radio[name='id_tipo_reserva'][value='PRBP']\").parent().css('background-color', '#808080');"),
-                                       tags$script("$(\"input:radio[name='id_tipo_reserva'][value='PSP']\").parent().css('background-color', '#808080');"),
+                                       tags$script("$(\"input:radio[name='id_tipo_reserva1'][value='PDP']\").parent().css('background-color', '#FF5F00');"),
+                                       tags$script("$(\"input:radio[name='id_tipo_reserva1'][value='PRBP']\").parent().css('background-color', '#808080');"),
+                                       tags$script("$(\"input:radio[name='id_tipo_reserva1'][value='PSP']\").parent().css('background-color', '#808080');"),
                                        
                                 ),
                                 
@@ -101,7 +101,7 @@ Well_Well_Basic <- tabItem(tabName = "Well_Well_Basic",
                                        
                                        
                                        conditionalPanel(condition = "input.v_dist_brent_vpn_p == true",
-                                                        sliderInput(inputId ="id_brent_p",label = strong(""), 40,100,50,step=10),
+                                                        sliderInput(inputId ="id_brent1",label = strong(""), 40,100,50,step=10),
                                                         HTML("")
                                                         
                                        )
@@ -114,7 +114,7 @@ Well_Well_Basic <- tabItem(tabName = "Well_Well_Basic",
                                        shiny::hr(),
                                        div(title="", # tooltip
                                            style = "margin-top: 10px; margin-bottom: 20px;",
-                                           radioGroupButtons("id_grafi_pp",
+                                           radioGroupButtons("id_FC1",
                                                              label= HTML("<strong>Paso 6.</strong>- Seleccione qu&eacute analisis desea explorar."),
                                                              choices = c("Distibucion Opex"='D_opex',
                                                                          "FC en Tiempo"='fc_t',
@@ -124,9 +124,9 @@ Well_Well_Basic <- tabItem(tabName = "Well_Well_Basic",
                                                              justified = TRUE
                                            )),
                                        
-                                       tags$script("$(\"input:radio[name='id_grafi_pp'][value='D_opex']\").parent().css('background-color', '#F7DB17');"),
-                                       tags$script("$(\"input:radio[name='id_grafi_pp'][value='fc_t']\").parent().css('background-color', '#CCD32A');"),
-                                       tags$script("$(\"input:radio[name='id_grafi_pp'][value='fc_d']\").parent().css('background-color', '#004236');"),
+                                       tags$script("$(\"input:radio[name='id_FC1'][value='D_opex']\").parent().css('background-color', '#F7DB17');"),
+                                       tags$script("$(\"input:radio[name='id_FC1'][value='fc_t']\").parent().css('background-color', '#CCD32A');"),
+                                       tags$script("$(\"input:radio[name='id_FC1'][value='fc_d']\").parent().css('background-color', '#004236');"),
                                        
                                 ),
                                 
@@ -134,7 +134,7 @@ Well_Well_Basic <- tabItem(tabName = "Well_Well_Basic",
                                        shiny::hr(),
                                        div(title="", # tooltip
                                            style = "margin-top: 10px; margin-bottom: 20px;",
-                                           radioGroupButtons("id_grafi_pp2",
+                                           radioGroupButtons("id_socio1",
                                                              label= HTML("<strong>Paso 7.</strong>- Seleccione el tipo a evaluar."),
                                                              choices = c("Sin Socio"='sin_Socio',
                                                                          "Con socio"='con_socio'),
@@ -143,8 +143,8 @@ Well_Well_Basic <- tabItem(tabName = "Well_Well_Basic",
                                                              justified = TRUE
                                            )),
                                        
-                                       tags$script("$(\"input:radio[name='id_grafi_pp2'][value='sin_Socio']\").parent().css('background-color', '#F7DB17');"),
-                                       tags$script("$(\"input:radio[name='id_grafi_pp2'][value='con_socio']\").parent().css('background-color', '#CCD32A');"),
+                                       tags$script("$(\"input:radio[name='id_socio1'][value='sin_Socio']\").parent().css('background-color', '#F7DB17');"),
+                                       tags$script("$(\"input:radio[name='id_socio1'][value='con_socio']\").parent().css('background-color', '#CCD32A');"),
                                        
                                 ),
                                 

@@ -1,3 +1,4 @@
+
 observe({
   
   
@@ -35,24 +36,24 @@ well_data <- reactive({
   
   if (input$v_dist_pozo==FALSE){
     
-    bd_eco <-well_basic %>%
+    bd_eco <-bd_prueba_c %>%
       dplyr::filter(campo==input$id_tipo_campo)%>%
-      dplyr::filter(D_Dec==input$id_tipo_grafico)%>%
-      dplyr::filter(E_Brent==input$id_brent_p)%>%
-      dplyr::filter(reserva==input$id_tipo_reserva)%>%
-      dplyr::filter(Socio==input$id_grafi_pp2)
+      dplyr::filter(D_Dec==input$id_D_Dec)%>%
+      dplyr::filter(E_Brent==input$id_brent1)%>%
+      dplyr::filter(reserva==input$id_tipo_reserva1)%>%
+      dplyr::filter(Socio==input$id_socio1)
     
     
   } else { 
     
     
     
-    bd_eco <-well_basic %>%
+    bd_eco <-bd_prueba_c %>%
       dplyr::filter(campo==input$id_tipo_campo)%>%
-      dplyr::filter(D_Dec==input$id_tipo_grafico)%>%
-      dplyr::filter(E_Brent==input$id_brent_p)%>%
-      dplyr::filter(reserva==input$id_tipo_reserva)%>%
-      dplyr::filter(Socio==input$id_grafi_pp2)%>%
+      dplyr::filter(D_Dec==input$id_D_Dec)%>%
+      dplyr::filter(E_Brent==input$id_brent1)%>%
+      dplyr::filter(reserva==input$id_tipo_reserva1)%>%
+      dplyr::filter(Socio==input$id_socio1)%>%
       dplyr::filter(well==input$tipo_well)
     
     
@@ -86,7 +87,7 @@ plot_well_chart <- function() {
              autosize = TRUE,
              showlegend = FALSE)
     
-  }else if (input$v_dist_pozo==TRUE & input$id_grafi_pp=="D_opex"){
+  }else if (input$v_dist_pozo==TRUE & input$id_FC1=="D_opex"){
     
     
     
@@ -117,7 +118,7 @@ plot_well_chart <- function() {
     fig
     
     
-  }else if (input$v_dist_pozo==TRUE & input$id_grafi_pp=="fc_t"){
+  }else if (input$v_dist_pozo==TRUE & input$id_FC1=="fc_t"){
     
     
     bd_eco <-data.frame(well_data())%>%
@@ -156,14 +157,14 @@ plot_well_chart <- function() {
              showlegend = TRUE)
     
     
-  }else if (input$v_dist_pozo==TRUE & input$id_grafi_pp=="fc_d"){  
+  }else if (input$v_dist_pozo==TRUE & input$id_FC1=="fc_d"){  
     
     
     
     fig <- bd_prueba_fc_v %>%
       tidyr::gather(year,Valor,8:length(bd_prueba_fc_v)) %>%
-      dplyr::filter(D_Dec==input$id_tipo_grafico)%>%
-      dplyr::filter(E_Brent==input$id_brent_p)%>%
+      dplyr::filter(D_Dec1==input$id_D_Dec1)%>%
+      dplyr::filter(E_Brent1==input$id_brent1)%>%
       dplyr::filter(well==input$tipo_well)%>%
       dplyr::mutate(Valor = as.numeric(Valor))%>%
       plot_ly(x = ~year, y = ~Valor, type = 'scatter', mode = 'lines', color=~well, colors= "darkgreen")
@@ -297,10 +298,3 @@ output$users_vpn3p<- renderInfoBox({
   
   
 })
-
-
-
-
-
-
-

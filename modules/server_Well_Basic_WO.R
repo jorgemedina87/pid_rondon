@@ -34,7 +34,7 @@ well_data_wo <- reactive ({
   if (input$POZO2==FALSE){
     
     bd_eco <-bd_prueba_bi_bw %>%
-      dplyr::filter(campo2==input$ID_CAMPO)%>%
+      dplyr::filter(campo2==input$id_campo1)%>%
       dplyr::filter(Socio2==input$ID_SOCIO)%>%
       dplyr::filter(E_Brent==input$BRENT2)%>%
       dplyr::filter(tipo_costo==input$id_costo)

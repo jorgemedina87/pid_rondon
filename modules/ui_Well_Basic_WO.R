@@ -7,7 +7,7 @@ Well_Basic_WO <- tabItem(tabName = "Well_Basic_WO",
                                              shiny::hr(),
                                              div(title="", # tooltip
                                                  style = "margin-top: 10px; margin-bottom: 20px;",
-                                                 radioGroupButtons("ID_CAMPO",
+                                                 radioGroupButtons("id_campo1",
                                                                    label= HTML("<strong>Paso 1.</strong>- Seleccione el tipo de Campo de interes"),
                                                                    choices = c("RONDON"='CANO_RONDON',
                                                                                "CARICARE"='CARICARE'),
@@ -16,8 +16,8 @@ Well_Basic_WO <- tabItem(tabName = "Well_Basic_WO",
                                                                    justified = TRUE
                                                  )),
                                              
-                                             tags$script("$(\"input:radio[name='ID_CAMPO'][value='CANO_RONDON']\").parent().css('background-color', '#FF5F00');"),
-                                             tags$script("$(\"input:radio[name='ID_CAMPO'][value='CARICARE']\").parent().css('background-color', '#808080');"),
+                                             tags$script("$(\"input:radio[name='id_campo1'][value='CANO_RONDON']\").parent().css('background-color', '#FF5F00');"),
+                                             tags$script("$(\"input:radio[name='id_campo1'][value='CARICARE']\").parent().css('background-color', '#808080');"),
                                              
                                              
                                       ),

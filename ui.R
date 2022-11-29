@@ -38,7 +38,7 @@ source("modules/ui_tab_perfil.R")
 #source("modules/ui_VPN_Basic_WO_NW.R", local = TRUE)
 source("modules/ui_Well_Well_Basic.R", local = TRUE)
 #source("modules/ui_Well_Basic_WO.R", local = TRUE)
-source("modules/ui_Well_Basic_WO_NW.R", local = TRUE)
+#source("modules/ui_Well_Basic_WO_NW.R", local = TRUE)
 
 
 ui <- dashboardPage(
@@ -92,9 +92,9 @@ ui <- dashboardPage(
       #VPN_Basic_WO,
       #VPN_Basic_WO_NW, 
 
-      Well_Well_Basic,
+      Well_Well_Basic
       #Well_Basic_WO
-      Well_Basic_WO_NW
+      #Well_Basic_WO_NW
       
     )
    

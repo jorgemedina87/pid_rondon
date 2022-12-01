@@ -66,13 +66,33 @@ VPN_Basic_WO<- tabItem(tabName = "VPN_Basic_WO", "VPN ",
                                                      tags$script("$(\"input:radio[name='id_grafi_pp'][value='fc_d']\").parent().css('background-color', '#004236');"),
                                                      
                                               ),
+                                              column(12,
+                                                     shiny::hr(),
+                                                     div(title="",
+                                                         p(tags$b(" Paso 4. Selecciones el tipo de PD."))),
+                                                     
+                                                     
+                                                     div(title="", # tooltip
+                                                         awesomeCheckbox(inputId = "v_dist_PD_vpn_p_nw", label = "PD", value = FALSE,status="success")),
+                                                     
+                                                     tags$style(HTML(".js-irs-1 .irs-single,.js-irs-1 .irs-bar-edge, .js-irs-1 .irs-bar-edge, .js-irs-1 .irs-bar {background: green}")),
+                                                     
+                                                     
+                                                     conditionalPanel(condition = "input.v_dist_PD_vpn_p_nw == true",
+                                                                      sliderInput(inputId ="id_PD3",label = strong(""), 0.0,0.3,0.1,step=0.1),
+                                                                      HTML("")
+                                                                      
+                                                     )
+                                                     
+                                                     
+                                              ),
                                               
                                               column(12,
                                                      shiny::hr(),
                                                      div(title="", # tooltip
                                                          style = "margin-top: 10px; margin-bottom: 20px;", 
                                                          radioGroupButtons("id_grafi_pp2", 
-                                                                           label= HTML("<strong>Paso 4.</strong>- Seleccione el tipo a evaluar."), 
+                                                                           label= HTML("<strong>Paso 5.</strong>- Seleccione el tipo a evaluar."), 
                                                                            choices = c("Sin Socio"='sin_Socio',
                                                                                        "Con socio"='con_socio'),
                                                                            checkIcon = list(yes = icon("check")),
@@ -89,7 +109,7 @@ VPN_Basic_WO<- tabItem(tabName = "VPN_Basic_WO", "VPN ",
                                                      div(title="", # tooltip
                                                          style = "margin-top: 10px; margin-bottom: 20px;", 
                                                          radioGroupButtons("id_tipo_costo", 
-                                                                           label= HTML("<strong>Paso 5.</strong>- Seleccione el tipo de Costo de interes"), 
+                                                                           label= HTML("<strong>Paso 6.</strong>- Seleccione el tipo de Costo de interes"), 
                                                                            choices = c("Pesimista"='pesimista',
                                                                                        "Probable"='probable',
                                                                                        "Optimista"='optimista'),
@@ -105,15 +125,6 @@ VPN_Basic_WO<- tabItem(tabName = "VPN_Basic_WO", "VPN ",
                                                      tags$script("$(\"input:radio[name='id_tipo_costo'][value='optimista']\").parent().css('background-color', '#808080');"),
                                                      
                                               ),
-                                              #              column(12,
-                                              #                     shiny::hr(),
-                                              #                     div(tags$b("Paso 5. Descarga de la base de dato y el grafico")),
-                                              #                     downloadButton('download_pozo', 'Download data', class = "down"),
-                                              #                     savechart_button('download_pozo', 'Save chart',  class = "down", disabled=TRUE))
-                                              # 
-                                              # 
-                                              # ),
-                                              
                                               
                                               mainPanel(width = 8, #Main panel
                                                         

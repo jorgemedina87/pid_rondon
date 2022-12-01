@@ -37,8 +37,7 @@ well_data_wo <- reactive ({
                 dplyr::filter(Socio == input$id_socio2)%>%
                 dplyr::filter(E_Brent == input$id_brent2)%>%
                 dplyr::filter(tipo_costo == input$id_tipo_costo_wo) %>%
-                dplyr::filter(P_D == 0.0) %>%
-                return()
+                dplyr::filter(P_D == input$id_PD2)
     
   } else {
     
@@ -47,9 +46,9 @@ well_data_wo <- reactive ({
                 dplyr::filter(Socio == input$id_socio2) %>%
                 dplyr::filter(E_Brent == input$id_brent2) %>%
                 dplyr::filter(tipo_costo == input$id_tipo_costo_wo) %>%
-                dplyr::filter(well == input$tipo_well_wo)   %>%
-                dplyr::filter(P_D == 0.0) %>%
-                return()
+                dplyr::filter(P_D == input$id_PD2) %>%
+                dplyr::filter(well == input$tipo_well_wo)  
+                
     
     
   }
@@ -157,6 +156,7 @@ plot_well_chart_wo <- function() {
     fig <- bd_prueba_fc_v %>%
       tidyr::gather(year,Valor,8:length(bd_prueba_fc_v)) %>%
       dplyr::filter(E_Brent==input$id_brent_p)%>%
+      dplyr::filter(P_D == input$id_PD2) %>%
       dplyr::filter(well==input$tipo_well_wo)%>%
       dplyr::mutate(Valor = as.numeric(Valor))%>%
       plot_ly(x = ~year, y = ~Valor, type = 'scatter', mode = 'lines', color=~well, colors= "darkgreen")

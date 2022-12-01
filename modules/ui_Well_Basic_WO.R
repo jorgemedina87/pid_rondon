@@ -61,13 +61,32 @@ Well_Basic_WO <- tabItem(tabName = "Well_Basic_WO",
                                              
                                       ),
                                       
-                                      
+                                      column(12,
+                                             shiny::hr(),
+                                             div(title="",
+                                                 p(tags$b(" Paso 4. Selecciones el tipo de PD."))),
+                                             
+                                             
+                                             div(title="", # tooltip
+                                                 awesomeCheckbox(inputId = "v_dist_PD_vpn_p_wo", label = "PD", value = FALSE,status="success")),
+                                             
+                                             tags$style(HTML(".js-irs-1 .irs-single,.js-irs-1 .irs-bar-edge, .js-irs-1 .irs-bar-edge, .js-irs-1 .irs-bar {background: green}")),
+                                             
+                                             
+                                             conditionalPanel(condition = "input.v_dist_PD_vpn_p_wo == true",
+                                                              sliderInput(inputId ="id_PD2",label = strong(""), 0.0,0.3,0.1,step=0.1),
+                                                              HTML("")
+                                                              
+                                             )
+                                             
+                                             
+                                      ),
                                       column(12,
                                              shiny::hr(),
                                              div(title="", # tooltip
                                                  style = "margin-top: 10px; margin-bottom: 20px;",
                                                  radioGroupButtons("id_FC2",
-                                                                   label= HTML("<strong>Paso 4.</strong>- Seleccione qu&eacute analisis desea explorar."),
+                                                                   label= HTML("<strong>Paso 5.</strong>- Seleccione qu&eacute analisis desea explorar."),
                                                                    choices = c("Distibucion Opex"='D_opex',
                                                                                "FC en Tiempo"='fc_t',
                                                                                "FC Descontado"='fc_d'),
@@ -87,7 +106,7 @@ Well_Basic_WO <- tabItem(tabName = "Well_Basic_WO",
                                              div(title="", # tooltip
                                                  style = "margin-top: 10px; margin-bottom: 20px;",
                                                  radioGroupButtons("id_socio2",
-                                                                   label= HTML("<strong>Paso 5.</strong>- Seleccione el tipo a evaluar."),
+                                                                   label= HTML("<strong>Paso 6.</strong>- Seleccione el tipo a evaluar."),
                                                                    choices = c("Sin Socio"='sin_Socio',
                                                                                "Con socio"='con_socio'),
                                                                    checkIcon = list(yes = icon("check")),
@@ -105,7 +124,7 @@ Well_Basic_WO <- tabItem(tabName = "Well_Basic_WO",
                                              div(title="", # tooltip
                                                  style = "margin-top: 10px; margin-bottom: 20px;", 
                                                  radioGroupButtons("id_tipo_costo_wo", 
-                                                                   label= HTML("<strong>Paso 6.</strong>- Seleccione el tipo de Costo de interes"), 
+                                                                   label= HTML("<strong>Paso 7.</strong>- Seleccione el tipo de Costo de interes"), 
                                                                    choices = c("Pesimista"='pesimista',
                                                                                "Probable"='probable',
                                                                                "Optimista"='optimista'),

@@ -5,7 +5,7 @@ VPN_NW <- tabItem(tabName = "VPN_NW",
                                                 shiny::hr(),
                                                 div(title="", # tooltip
                                                     style = "margin-top: 10px; margin-bottom: 20px;",
-                                                    radioGroupButtons("id_tipo_campo_NW22",
+                                                    radioGroupButtons("id_tipo_campo_NW2",
                                                                       label= HTML("<strong>Paso 1.</strong>- Seleccione el tipo de Campo de interes"),
                                                                       choices = c("RONDON"='CANO_RONDON',
                                                                                   "CARICARE"='CARICARE'),
@@ -65,7 +65,7 @@ VPN_NW <- tabItem(tabName = "VPN_NW",
                                          column(12,
                                                 shiny::hr(),
                                                 div(title="",
-                                                    p(tags$b(" Paso 4. Selecciones el tipo de PD."))),
+                                                    p(tags$b(" Paso 4. Seleccione el porcentaje de descuento en capex"))),
                                                 
                                                 
                                                 div(title="", # tooltip

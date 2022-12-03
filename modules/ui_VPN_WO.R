@@ -64,7 +64,7 @@ VPN_WO<- tabItem(tabName = "VPN_WO",
                               column(12,
                                      shiny::hr(),
                                      div(title="",
-                                         p(tags$b(" Paso 4. Selecciones el tipo de PD."))),
+                                         p(tags$b(" Paso 4. Seleccione el porcentaje de descuento en capex"))),
                                      
                                      
                                      div(title="", # tooltip

@@ -145,27 +145,27 @@ output$plot_perf_basic_incr <- renderPlotly({
   
   
   if (input$id_perf_prod == 'Oil'){
-    
+  #title = paste('Perfil de','Oil'),
     fig %>%
-      layout(title = paste('Perfil de','Oil'),
+      layout(
              xaxis = list(title = "DATE",
                           showgrid = FALSE),
              yaxis = list(title = "BOPD",
                           showgrid = FALSE))
     
   }else if (input$id_perf_prod == 'Water'){
-    
+#title = paste('Perfil de','Agua'),    
     fig %>%
-      layout(title = paste('Perfil de','Agua'),
+      layout(
              xaxis = list(title = "DATE",
                           showgrid = FALSE),
              yaxis = list(title = "BWPD",
                           showgrid = FALSE))
     
   }else if (input$id_perf_prod == 'gas'){
-    
+ #title = paste('Perfil de','Gas'),   
     fig %>%
-      layout(title = paste('Perfil de','Gas'),
+      layout(
              xaxis = list(title = "DATE",
                           showgrid = FALSE),
              yaxis = list(title = "KPSD",
@@ -225,16 +225,17 @@ output$plot_perf_reserva <- renderPlotly({
   
   if (input$id_perf_prod == 'Oil'){
     fig %>%
-      layout(title = paste('Perfil de','Oil'),
+      #title = paste('Perfil de','Oil'),
+      layout(
              xaxis = list(title = "DATE",
                           showgrid = FALSE),
              yaxis = list(title = "BOPD",
                           showgrid = FALSE))
     
   }else if (input$id_perf_prod =='Water'){
-    
+  #title = paste('Perfil de','Agua'), 
     fig %>%
-      layout(title = paste('Perfil de','Agua'),
+      layout(
              xaxis = list(title = "DATE",
                           showgrid = FALSE),
              yaxis = list(title = "BWPD",
@@ -242,9 +243,9 @@ output$plot_perf_reserva <- renderPlotly({
     
   }else if (input$id_perf_prod == 'gas'){
     
-    
+#title = paste('Perfil de','Gas'),   
     fig %>%
-      layout(title = paste('Perfil de','Gas'),
+      layout(
              xaxis = list(title = "DATE",
                           showgrid = FALSE),
              yaxis = list(title = "KPSD",
@@ -298,19 +299,19 @@ output$plot_perf_campo <- renderPlotly({
                                                   type ='scatter', mode = 'none',
                                                   stackgroup = 'one')
 
- 
+#title = paste('Perfil de','Oil'), 
 if (input$id_perf_prod == 'Oil'){
   fig %>%
-    layout(title = paste('Perfil de','Oil'),
+    layout(
            xaxis = list(title = "DATE",
                         showgrid = FALSE),
            yaxis = list(title = "BOPD",
                         showgrid = FALSE))
   
 }else if (input$id_perf_prod == 'Water'){
-  
+#title = paste('Perfil de','Agua'),  
   fig %>%
-    layout(title = paste('Perfil de','Agua'),
+    layout(
            xaxis = list(title = "DATE",
                         showgrid = FALSE),
            yaxis = list(title = "BWPD",
@@ -318,9 +319,9 @@ if (input$id_perf_prod == 'Oil'){
   
 }else if (input$id_perf_prod == 'gas'){
   
-  
+ #title = paste('Perfil de','Gas'), 
   fig %>%
-    layout(title = paste('Perfil de','Gas'),
+    layout(
            xaxis = list(title = "DATE",
                         showgrid = FALSE),
            yaxis = list(title = "KPSD",
@@ -375,33 +376,33 @@ output$plot_perf_vol <- renderPlotly({
   fig <-plot_ly(data_perf_vol_(),x = ~Tipo, y = ~Suma_vol, color = ~Tipo,
                 type = 'bar', mode = 'none',
                 stackgroup = 'one')
-  
+  #title = paste('Perfil de','Oil'), 
   
   if (input$id_perf_prod == 'Oil'){
     fig %>%
-      layout(title = paste('Perfil de','Oil'),
+      layout(
              xaxis = list(title = "TIPO",
                           showgrid = FALSE),
-             yaxis = list(title = "VOL",
+             yaxis = list(title = "MBLS",
                           showgrid = FALSE))
     
   }else if (input$id_perf_prod == 'Water'){
-    
+#title = paste('Perfil de','Agua'),    
     fig %>%
-      layout(title = paste('Perfil de','Agua'),
+      layout(
              xaxis = list(title = "TIPO",
                           showgrid = FALSE),
-             yaxis = list(title = "VOL",
+             yaxis = list(title = "MBLS",
                           showgrid = FALSE))
     
   }else if (input$id_perf_prod == 'gas'){
     
-    
+#title = paste('Perfil de','Gas'),    
     fig %>%
-      layout(title = paste('Perfil de','Gas'),
+      layout(
              xaxis = list(title = "TIPO",
                           showgrid = FALSE),
-             yaxis = list(title = "VOL",
+             yaxis = list(title = "MBLS",
                           showgrid = FALSE))
     
   }

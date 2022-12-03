@@ -20,8 +20,14 @@ library(tidyr)
 
 bd_perfil_pozo_v <- read_excel(file.path("data/bd_cr_c_nf_nn.xlsx"), sheet = "Sheet1")
 bd_perfil_pozo_ <- read_excel(file.path("data/bd_perfil_pozo_.xlsx"), sheet = "Sheet1")
-#bd_prueba_c <-  read.csv(file.path("data/bd_prueba_c.csv"))
-#bd_prueba_fc <- read.csv(file.path("data/bd_fc.csv"))
+
+bd_WO<-  read.csv(file.path("data/bd_wo.csv"))
+bd_WO_fc <- read.csv(file.path("data/bd_fc_wo.csv"))
+
+bd_NW<-  read.csv(file.path("data/bd_nw.csv"))
+bd_NW_fc <- read.csv(file.path("data/bd_fc_nw.csv"))
+
+names(bd_WO)
 
 bd_prueba_b_pp <-  read.csv(file.path("data/bd_prueba_b_pp.csv"))
 bd_prueba_fc <- read.csv(file.path("data/bd_fc.csv"))
@@ -51,10 +57,9 @@ id_campo <-bd_perfil_pozo_ %>%
 server <- function(input, output, session) {
 
    source("modules/server_perfil.R", local = TRUE)
-   #source("modules/server_wo_inc.R", local = TRUE)
-  #source("modules/server_VPN_Basic.R", local = TRUE)
-  #source("modules/server_VPN_Basic_WO.R", local = TRUE)
-  #source("modules/server_VPN_Basic_WO_NW.R", local = TRUE)
+     #source("modules/server_VPN_Basic.R", local = TRUE)
+  source("modules/server_VPN_WO.R", local = TRUE)
+  source("modules/server_VPN_NW.R", local = TRUE)
   source("modules/server_Well_Well_Basic.R", local = TRUE)
   source("modules/server_Well_Basic_WO.R", local = TRUE)
   source("modules/server_Well_Basic_WO_NW.R", local = TRUE)

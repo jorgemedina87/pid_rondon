@@ -34,8 +34,8 @@ source("modules/ui_tab_perfil.R")
 #source("modules/ui_wo_inc.R")
 #source("modules/ui_wo_exp.R")
 #source("modules/ui_VPN_Basic.R", local = TRUE)
-#source("modules/ui_VPN_Basic_WO.R", local = TRUE)
-#source("modules/ui_VPN_Basic_WO_NW.R", local = TRUE)
+source("modules/ui_VPN_WO.R", local = TRUE)
+source("modules/ui_VPN_NW.R", local = TRUE)
 source("modules/ui_Well_Well_Basic.R", local = TRUE)
 source("modules/ui_Well_Basic_WO.R", local = TRUE)
 source("modules/ui_Well_Basic_WO_NW.R", local = TRUE)
@@ -56,8 +56,8 @@ ui <- dashboardPage(
       
        menuItem(HTML("<b> VPN +</b>"),  icon = icon("dollar-sign"),
        menuSubItem("Basic", tabName = "VPN_Basic", icon = icon("fas fa-chart-area")),
-       menuSubItem("Basic + WO", tabName = "VPN_Basic_WO_NW", icon = icon("fas fa-chart-area")),
-              menuSubItem("Basic + WO + NW", tabName = "VPN_Basic_WO", icon = icon("fas fa-file-export"))
+       menuSubItem("WO", tabName = "VPN_WO", icon = icon("fas fa-chart-area")),
+              menuSubItem("NW", tabName = "VPN_WO", icon = icon("fas fa-file-export"))
                ),
       menuItem(HTML("<b> Well by Well + </b>"), icon = icon("dollar-sign"),
                menuSubItem("Basic", tabName = "Well_Well_Basic", icon = icon("fas fa-chart-area")),
@@ -89,8 +89,8 @@ ui <- dashboardPage(
       tab_perfil,
      
       #VPN_Basic,
-      #VPN_Basic_WO,
-      #VPN_Basic_WO_NW, 
+      VPN_WO,
+      VPN_NW, 
 
       Well_Well_Basic,
       Well_Basic_WO,

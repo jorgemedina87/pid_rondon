@@ -58,11 +58,10 @@ server <- function(input, output, session) {
 
    source("modules/server_perfil.R", local = TRUE)
      #source("modules/server_VPN_Basic.R", local = TRUE)
+  source("modules/server_Well_Well_Basic.R", local = TRUE)
   source("modules/server_VPN_WO.R", local = TRUE)
   source("modules/server_VPN_NW.R", local = TRUE)
-  source("modules/server_Well_Well_Basic.R", local = TRUE)
-  source("modules/server_Well_Basic_WO.R", local = TRUE)
-  source("modules/server_Well_Basic_WO_NW.R", local = TRUE)
+  
 }
 
 

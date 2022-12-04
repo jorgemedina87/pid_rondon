@@ -108,6 +108,10 @@ tab_perfil <- tabItem(tabName = "tab_perfil",
                                                     selected = "General", inline = TRUE, checkbox = TRUE, status = "success"
                                                     )
                                         ),
+                                  
+                                  
+                                 
+                                  
 
 
         ),

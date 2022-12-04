@@ -63,20 +63,35 @@ plot_vpn_chart_wo <- function() {
   
   if (input$v_dist_pozo2_1==FALSE){
     
-    dt<-data.frame(vpn_data_wo())%>%
-      dplyr::group_by(well)%>%
-      dplyr::summarise(mean_vpn = quantile(VPN_incremental,0.5)/1000)
+    dt <-data.frame(vpn_data_wo()) %>%
+          dplyr::group_by(well) %>%
+          dplyr::summarise(mean_vpn = quantile(VPN_incremental,0.5) / 1000) %>%
+          ungroup() %>%
+          dplyr::mutate(condicion = ifelse(mean_vpn >= 0, 1, 0))
+    
     
     dt$POZO <- factor(dt$well, levels = unique(dt$well)[order(dt$mean_vpn, decreasing = TRUE)])
     
+   if(sum(dt$condicion) == nrow(dt)){
+     
+     plot_ly(dt,x = ~POZO, y = ~mean_vpn,type = 'bar',
+             color = ~mean_vpn >= 0, colors = c("#008000","#008000")) %>%
+       layout(title = "VPN Pozo a Pozo",
+              xaxis = list(title = ""),
+              yaxis = list(title = "VPN (MUSD)"),
+              autosize = TRUE,
+              showlegend = FALSE)
+   } else {
+     
     plot_ly(dt,x = ~POZO, y = ~mean_vpn,type = 'bar',
-            color = ~mean_vpn >=0, colors = c("#FF0000","#008000")) %>%
+            color = ~mean_vpn >= 0, colors = c("#FF0000","#008000")) %>%
       layout(title = "VPN Pozo a Pozo",
              xaxis = list(title = ""),
              yaxis = list(title = "VPN (MUSD)"),
              autosize = TRUE,
              showlegend = FALSE)
-    
+     
+   }
     
   }else if (input$v_dist_pozo2_1==TRUE & input$id_FC_VPN_WO=="D_opex"){
     

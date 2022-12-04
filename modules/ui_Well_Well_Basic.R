@@ -76,8 +76,8 @@ Well_Well_Basic <- tabItem(tabName = "Well_Well_Basic",
                                                              justified = TRUE
                                                               
                                            )),
-                                       tags$script("$(\"input:radio[name='id_tipo_reserva1'][value='PDP']\").parent().css('background-color', '#FF5F00');"),
-                                       tags$script("$(\"input:radio[name='id_tipo_reserva1'][value='PRBP']\").parent().css('background-color', '#808080');"),
+                                       tags$script("$(\"input:radio[name='id_tipo_reserva1'][value='PDP']\").parent().css('background-color', '#808080');"),
+                                       tags$script("$(\"input:radio[name='id_tipo_reserva1'][value='PRBP']\").parent().css('background-color', '#FF5F00');"),
                                        tags$script("$(\"input:radio[name='id_tipo_reserva1'][value='PSP']\").parent().css('background-color', '#808080');"),
                                        
                                 ),
@@ -97,7 +97,7 @@ Well_Well_Basic <- tabItem(tabName = "Well_Well_Basic",
                                        
                                        
                                        conditionalPanel(condition = "input.v_dist_brent_vpn_p == true",
-                                                        sliderInput(inputId ="id_brent1",label = strong(""), 40,100,50,step=10),
+                                                        sliderInput(inputId ="id_brent1",label = strong(""), 50,90,60,step=10),
                                                         HTML("")
                                                         
                                        )

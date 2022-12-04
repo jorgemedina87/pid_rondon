@@ -32,11 +32,12 @@ library(rvest)
 
 source("modules/ui_tab_perfil.R")
 #source("modules/ui_VPN_Basic.R", local = TRUE)
+source("modules/ui_VPN_total.R", local = TRUE)
+source("modules/ui_Well_Well_Basic.R", local = TRUE)
 source("modules/ui_VPN_WO.R", local = TRUE)
 source("modules/ui_VPN_NW.R", local = TRUE)
-source("modules/ui_Well_Well_Basic.R", local = TRUE)
-source("modules/ui_Well_Basic_WO.R", local = TRUE)
-source("modules/ui_Well_Basic_WO_NW.R", local = TRUE)
+
+
 
 
 ui <- dashboardPage(
@@ -51,17 +52,15 @@ ui <- dashboardPage(
     br(),
     sidebarMenu(
       menuItem(HTML("<b> Profile </b>"), tabName = "tab_perfil", icon = icon("area-chart")),
-      
-       menuItem(HTML("<b> VPN +</b>"),  icon = icon("dollar-sign"),
-       menuSubItem("Basic", tabName = "VPN_Basic", icon = icon("fas fa-chart-area")),
+      menuItem(HTML("<b> VPN Total +</b>"),  icon = icon("dollar-sign"),
+               menuSubItem("Total", tabName = "VPN_total", icon = icon("fas fa-chart-area"))
+               ),
+       menuItem(HTML("<b> Well by Well + </b>"),  icon = icon("dollar-sign"),
+       menuSubItem("Basic", tabName = "Well_Well_Basic", icon = icon("fas fa-chart-area")),
        menuSubItem("WO", tabName = "VPN_WO", icon = icon("fas fa-chart-area")),
               menuSubItem("NW", tabName = "VPN_NW", icon = icon("fas fa-file-export"))
                ),
-      menuItem(HTML("<b> Well by Well + </b>"), icon = icon("dollar-sign"),
-               menuSubItem("Basic", tabName = "Well_Well_Basic", icon = icon("fas fa-chart-area")),
-               menuSubItem("Basic + WO", tabName = "Well_Basic_WO", icon = icon("fas fa-chart-area")),
-               menuSubItem("Basic + WO + NW", tabName = "Well_Basic_WO_NW", icon = icon("fas fa-file-export"))
-               ), 
+     
       br(),
       br(),
       hr(),
@@ -85,15 +84,11 @@ ui <- dashboardPage(
    
     tabItems(
       tab_perfil,
-     
-      #VPN_Basic,
-      VPN_WO,
-      VPN_NW, 
-
-      Well_Well_Basic,
-      Well_Basic_WO,
-      Well_Basic_WO_NW
+      VPN_total,
       
+      Well_Well_Basic,
+      VPN_WO,
+      VPN_NW 
     )
    
   )

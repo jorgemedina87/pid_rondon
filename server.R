@@ -41,6 +41,11 @@ bd_fc_bi_bw_nw <-read.csv(file.path("data/bd_fc_bi_bw_nw.csv"))
 
 
 
+rawdata_total <-  read.csv(file.path("data/bd_total.csv"))
+rawdata_total_fc <-  read.csv(file.path("data/bd_fc_total.csv"))
+
+
+
 names(bd_prueba_bi_bw)
 
 
@@ -56,8 +61,8 @@ id_campo <-bd_perfil_pozo_ %>%
 
 server <- function(input, output, session) {
 
-   source("modules/server_perfil.R", local = TRUE)
-     #source("modules/server_VPN_Basic.R", local = TRUE)
+  source("modules/server_perfil.R", local = TRUE)
+  source("modules/server_vpn_total.R", local = TRUE)
   source("modules/server_Well_Well_Basic.R", local = TRUE)
   source("modules/server_VPN_WO.R", local = TRUE)
   source("modules/server_VPN_NW.R", local = TRUE)

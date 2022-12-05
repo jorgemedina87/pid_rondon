@@ -22,7 +22,7 @@ observe({
   
   
   
-  updateSelectInput(session, "tipo_well", choices =t_categoria)
+  updateSelectInput(session, "tipo_well", choices = t_categoria)
   
   
 }) 

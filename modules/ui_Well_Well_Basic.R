@@ -145,8 +145,7 @@ Well_Well_Basic <- tabItem(tabName = "Well_Well_Basic",
                                 ),
 
                    ),
-                   mainPanel(width = 8, #Main panel
-                             bsModal("mod_defs_pozo", HTML("Definici&oacuten"), "defs_pozo", htmlOutput('defs_text_pozo')),
+                   mainPanel(width = 8,
                              fluidRow(
                                column(3,infoBoxOutput("users_vpn1p",width = 12)),
                                column(3,infoBoxOutput("users_vpn2p",width = 12)),

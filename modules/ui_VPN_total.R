@@ -1,35 +1,50 @@
 VPN_total <- tabItem(tabName = "VPN_total",
                      sidebarPanel(width = 4,
                                   column(12,
-                                         div(title = "Select what aspect of inequality you want to explore.", # tooltip
-                                             style = "margin-top: 10px; margin-bottom: 20px;",
-                                             radioGroupButtons("id_total_campo",
-                                                               label= shiny::HTML("<strong>Paso 1.</strong>- Seleccione el tipo de Campo de interes"),
-                                                               choices = c("RONDON"   = 'CANO_RONDON',
-                                                                           "CARICARE" = 'CARICARE'),
-                                                               checkIcon = list(yes = icon("check")),
-                                                               select ='CARICARE' ,
-                                                               justified = TRUE
-                                             )
-                                         ),
                                          
-                                         tags$script("$(\"input:radio[name = 'id_total_campo'][value = 'CANO_RONDON']\").parent().css('background-color', '#F7DB17');"),
-                                         tags$script("$(\"input:radio[name = 'id_total_campo'][value = 'CARICARE']\").parent().css('background-color', '#CCD32A');"),
-                                          ),
+                                         div(title="",
+                                             awesomeRadio("id_total_general_campo", label = shiny::HTML("Paso 1. Selecciones el tipo de analisis:<br/><br/>"), #br required to try and keep alignment across columns
+                                                          choices = list("General" = 1, "Campo" = 2),
+                                                          selected = 1, inline = TRUE, checkbox = TRUE, status = "success")),
+                                         
+                                  ),
+                                  
+                                  conditionalPanel(condition = "input.id_total_general_campo == 2 ",
+                                          column(12,
+                                                 div(title = "Select what aspect of inequality you want to explore.", # tooltip
+                                                     style = "margin-top: 10px; margin-bottom: 20px;",
+                                                     radioGroupButtons("id_total_campo",
+                                                                       label= shiny::HTML("<strong>Paso 1.1</strong>- Seleccione el tipo de Campo de interes"),
+                                                                       choices = c("RONDON"   = 'CANO_RONDON',
+                                                                                   "CARICARE" = 'CARICARE'),
+                                                                       checkIcon = list(yes = icon("check")),
+                                                                       select ='CARICARE' ,
+                                                                       justified = TRUE
+                                                     )
+                                                 ),
+                                                 
+                                                 tags$script("$(\"input:radio[name = 'id_total_campo'][value = 'CANO_RONDON']\").parent().css('background-color', '#F7DB17');"),
+                                                 tags$script("$(\"input:radio[name = 'id_total_campo'][value = 'CARICARE']\").parent().css('background-color', '#CCD32A');"),
+                                                  ),
+                                  ),
+                                  
                                   
                                   column(12,
                                          shiny::hr(),
-                                         div(title = "",
-                                             p(tags$b(" Paso 2. Selecciones el tipo de Brent a sensibilizar."))),
+                                         div(title="",
+                                             awesomeRadio("id_brent_vpn_total", label = shiny::HTML("Paso 2. Selecciones el tipo de Brent a sensibilizar.<br/><br/>"), #br required to try and keep alignment across columns
+                                                          choices = list("Portafolio" = 1, "Brent" = 2),
+                                                          selected = 1, inline = TRUE, checkbox = TRUE, status = "success")),
                                          
-                                         
-                                         div(title = "", 
-                                             awesomeCheckbox(inputId = "id_brent_vpn_total", label = "Brent", value = FALSE, status = "success")),
+                                  ),
+                                  
+                                  
+                                  
+                                  column(12,
                                          
                                          tags$style(HTML(".js-irs-0 .irs-single, .js-irs-0 .irs-bar-edge, .js-irs-0 .irs-bar {background: green}")),
                                          
-                                         
-                                         conditionalPanel(condition = "input.id_brent_vpn_total == true",
+                                         conditionalPanel(condition = "input.id_brent_vpn_total == 2",
                                                           sliderInput(inputId = "id_brent_total",label = strong(""), 50, 90, 60, step = 10),
                                                           HTML("")
                                                           
@@ -81,14 +96,36 @@ VPN_total <- tabItem(tabName = "VPN_total",
                                          
                                   ),
                                   
-                                  switchInput(inputId = "id_basic_", label = "" , value = TRUE)
+                                  
+                                  column(12,
+                                         shiny::hr(),
+                                         div(title = "",
+                                             p(tags$b(" Paso 5. Seleccione el analisis por basica, WO o NW"))),
+                                         
+                                         column(4,
+                                          switchInput(inputId = "id_basic_", label = "Basica" , value = 1, onStatus = "success", offStatus = "danger")),
+                                         
+                                         column(4,
+                                                switchInput(inputId = "id_wo_", label = "WO" , value = 1, onStatus = "success", offStatus = "danger")),
+                                         column(4,
+                                                switchInput(inputId = "id_nw_", label = "NW" , value = 1, onStatus = "success", offStatus = "danger")),
+                                        
+                                  ),
+                                  
                                   
                                              
                                   ),
                       
                       
                       
-                      mainPanel(width = 8, #Main panel
+                      mainPanel(width = 8, 
+                                
+                                fluidRow(
+                                  column(3,infoBoxOutput("box_total_vpn",width = 12)),
+                                  column(3,infoBoxOutput("box_total_opex",width = 12)),
+                                  column(3,infoBoxOutput("box_total_vol",width = 12))
+                                ),
+                                
                                 withSpinner(plotlyOutput("plot_total_vpn")),
                                 withSpinner(tableOutput("table_total_vpn"))
                                 

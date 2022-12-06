@@ -120,16 +120,34 @@ VPN_total <- tabItem(tabName = "VPN_total",
                       
                       mainPanel(width = 8, 
                                 
-                                fluidRow(
-                                  column(3,infoBoxOutput("box_total_vpn",width = 12)),
-                                  column(3,infoBoxOutput("box_total_opex",width = 12)),
-                                  column(3,infoBoxOutput("box_total_vol",width = 12))
-                                ),
-                                
-                                withSpinner(plotlyOutput("plot_total_vpn")),
-                                withSpinner(tableOutput("table_total_vpn"))
-                                
-                                )
+                              conditionalPanel(condition = "input.id_brent_vpn_total == 1",
+                                    fluidRow(
+                                      column(3,infoBoxOutput("box_total_vpn_port",width = 12)),
+                                      column(3,infoBoxOutput("box_total_opex_port",width = 12)),
+                                      column(3,infoBoxOutput("box_total_vol_port",width = 12))
+                                            ),
+                                    
+                                    withSpinner(plotlyOutput("plot_total_vpn_port")),
+                                    withSpinner(DT::dataTableOutput("table_total_vpn_port"))
+                                    
+                                            ),
+                              
+                              
+                              conditionalPanel(condition = "input.id_brent_vpn_total == 2",
+                                               fluidRow(
+                                                 column(3,infoBoxOutput("box_total_vpn_brent",width = 12)),
+                                                 column(3,infoBoxOutput("box_total_opex_brent",width = 12)),
+                                                 column(3,infoBoxOutput("box_total_vol_brent",width = 12))
+                                               ),
+                                               
+                                               withSpinner(plotlyOutput("plot_total_vpn_brent")),
+                                               withSpinner(DT::dataTableOutput("table_total_vpn_brent"))
+                                               
+                              )
+                              
+                              
+                              
+                              )
         
                       
 )

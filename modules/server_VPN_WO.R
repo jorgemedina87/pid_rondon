@@ -1,3 +1,9 @@
+
+shinyjs::disable("id_socio_VPN_WO")
+
+
+
+
 observe({
   
   

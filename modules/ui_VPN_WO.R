@@ -1,11 +1,10 @@
 VPN_WO<- tabItem(tabName = "VPN_WO", 
                  sidebarPanel(width = 4,
                               column(12,
-                                     shiny::hr(),
                                      div(title = "", 
                                          style = "margin-top: 10px; margin-bottom: 20px;",
                                          radioGroupButtons("id_tipo_campo_VPNwo",
-                                                           label = HTML("<strong>Paso 1.</strong>- Seleccione el tipo de Campo de interes"),
+                                                           label = HTML("<li> Seleccione el tipo de Campo de interes.</li> "),
                                                            choices = c("RONDON" = 'CANO_RONDON',
                                                                        "CARICARE" = 'CARICARE'),
                                                            checkIcon = list(yes = icon("check")),
@@ -24,7 +23,7 @@ VPN_WO<- tabItem(tabName = "VPN_WO",
                               column(12,
                                      shiny::hr(),
                                      div(title = "",
-                                         p(tags$b(" Paso 2. Selecciones el tipo de pozo analizar"))),
+                                         p(tags$b(HTML("<li> Selecciones el tipo de pozo analizar. </li>")))),
                                      
                                      
                                      div(title="", # tooltip
@@ -40,10 +39,12 @@ VPN_WO<- tabItem(tabName = "VPN_WO",
                                      
                               ),
                               
+                              
+                              
                               column(12,
                                      shiny::hr(),
                                      div(title = "",
-                                         p(tags$b(" Paso 3. Selecciones el tipo de Brent a sensibilizar."))),
+                                         p(tags$b(HTML(" <li> Selecciones el tipo de Brent a sensibilizar. </li>")))),
                                      
                                      
                                      div(title = "", 
@@ -64,7 +65,7 @@ VPN_WO<- tabItem(tabName = "VPN_WO",
                               column(12,
                                      shiny::hr(),
                                      div(title = "",
-                                         p(tags$b(" Paso 4. Seleccione el porcentaje de descuento en capex"))),
+                                         p(tags$b(HTML(" <li> Seleccione el porcentaje de descuento en capex </li>")))),
                                      
                                      
                                      div(title="", # tooltip
@@ -83,13 +84,14 @@ VPN_WO<- tabItem(tabName = "VPN_WO",
                               ),
                               column(12,
                                      shiny::hr(),
+                                     conditionalPanel(condition = "input.v_dist_pozo2_1 == true",
+                                    
                                      div(title = "", 
                                          style = "margin-top: 10px; margin-bottom: 20px;",
                                          radioGroupButtons("id_FC_VPN_WO",
-                                                           label = HTML("<strong>Paso 5.</strong>- Seleccione qu&eacute analisis desea explorar."),
+                                                           label = HTML("<li> Seleccione qu&eacute analisis desea explorar. </li> "),
                                                            choices = c("Distibucion Opex" = 'D_opex',
-                                                                       "FC en Tiempo" = 'fc_t',
-                                                                       "FC Descontado" = 'fc_d'),
+                                                                       "FC en Tiempo" = 'fc_t'),
                                                            checkIcon = list(yes = icon("check")),
                                                            select ='fc_t' ,
                                                            justified = TRUE
@@ -97,8 +99,7 @@ VPN_WO<- tabItem(tabName = "VPN_WO",
                                      
                                      tags$script("$(\"input:radio[name = 'id_FC_VPN_WO'][value = 'D_opex']\").parent().css('background-color', '#F7DB17');"),
                                      tags$script("$(\"input:radio[name = 'id_FC_VPN_WO'][value = 'fc_t']\").parent().css('background-color', '#CCD32A');"),
-                                     tags$script("$(\"input:radio[name = 'id_FC_VPN_WO'][value = 'fc_d']\").parent().css('background-color', '#004236');"),
-                                     
+                                     )
                               ),
                               
                               column(12,
@@ -106,7 +107,7 @@ VPN_WO<- tabItem(tabName = "VPN_WO",
                                      div(title = "",
                                          style = "margin-top: 10px; margin-bottom: 20px;",
                                          radioGroupButtons("id_socio_VPN_WO",
-                                                           label= HTML("<strong>Paso 6.</strong>- Seleccione el tipo a evaluar."),
+                                                           label= HTML("<li> Seleccione el tipo a evaluar. </li>"),
                                                            choices = c("Sin Socio"='sin_Socio',
                                                                        "Con socio"='con_socio'),
                                                            checkIcon = list(yes = icon("check")),
@@ -124,7 +125,7 @@ VPN_WO<- tabItem(tabName = "VPN_WO",
                                      div(title = "", # tooltip
                                          style = "margin-top: 10px; margin-bottom: 20px;", 
                                          radioGroupButtons("id_tipo_costovpn_wo", 
-                                                           label = HTML("<strong>Paso 7.</strong>- Seleccione el tipo de Costo de interes"), 
+                                                           label = HTML("<li> Seleccione el tipo de Costo de interes. </li>"), 
                                                            choices = c("Pesimista" = 'pesimista',
                                                                        "Probable" = 'probable',
                                                                        "Optimista" = 'optimista'),
@@ -157,7 +158,7 @@ VPN_WO<- tabItem(tabName = "VPN_WO",
                                                    style = "padding-bottom: 40px;",
                                                    p(column(1),
                                                      column(2, img(src = "quintile1.png", height = "16px"), "1 - VPN Positivo"), 
-                                                     column(1, img(src = "quintile2.png", height = "16px"), "2 - VPN Negativo"),
+                                                     column(2, img(src = "quintile2.png", height = "16px"), "2 - VPN Negativo"),
                                                      column(1)))
                            ),
                            

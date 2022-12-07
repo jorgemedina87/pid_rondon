@@ -45,7 +45,7 @@ ui <- dashboardPage(
   title = "PID RONDON",
   # HEADER ------------------------------------------------------------------
   dashboardHeader(title = "PID RONDON"), 
-  
+
   # SIDEBAR -----------------------------------------------------------------
   
   dashboardSidebar(

@@ -1,14 +1,12 @@
 
 Well_Well_Basic <- tabItem(tabName = "Well_Well_Basic", 
-                 
-                   
+                           useShinyjs(),
                            sidebarPanel(width=4,
                                         column(12,
-                                               shiny::hr(),
-                                               div(title="", # tooltip
+                                               div(title="", 
                                                    style = "margin-top: 10px; margin-bottom: 15px;", 
                                                    radioGroupButtons("id_D_Dec", 
-                                                                     label= HTML("<strong>Paso 1.</strong>- Seleccione qu&eacute analisis desea explorar."), 
+                                                                     label= HTML("<li> Seleccione qu&eacute analisis desea explorar.</li> "), 
                                                                      choices = c("Perfil"='Perfil',
                                                                                  "N pozo"='n_well',
                                                                                  "Sin Costo F"='sin_fijo'),
@@ -18,7 +16,7 @@ Well_Well_Basic <- tabItem(tabName = "Well_Well_Basic",
                                                    )),
                                        tags$script("$(\"input:radio[name='id_D_Dec'][value='Perfil']\").parent().css('background-color', '#F7DB17');"),
                                        tags$script("$(\"input:radio[name='id_D_Dec'][value='n_well']\").parent().css('background-color', '#CCD32A');"),
-                                       tags$script("$(\"input:radio[name='id_D_Dec'][value='sin_fijo']\").parent().css('background-color', '#004236');"),
+                                       tags$script("$(\"input:radio[name='id_D_Dec'][value='sin_fijo']\").parent().css('background-color', '#808080');"),
                                        
                                 ),
                                 
@@ -28,7 +26,7 @@ Well_Well_Basic <- tabItem(tabName = "Well_Well_Basic",
                                        div(title="", # tooltip
                                            style = "margin-top: 10px; margin-bottom: 20px;",
                                            radioGroupButtons("id_tipo_campo",
-                                                             label= HTML("<strong>Paso 2.</strong>- Seleccione el tipo de Campo de interes"),
+                                                             label= HTML("<li> Seleccione el tipo de Campo de interes.</li> "),
                                                              choices = c("RONDON"='RONDON',
                                                                          "CARICARE"='CARICARE'),
                                                              checkIcon = list(yes = icon("check")),
@@ -47,11 +45,11 @@ Well_Well_Basic <- tabItem(tabName = "Well_Well_Basic",
                                 column(12,
                                        shiny::hr(),
                                        div(title="",
-                                           p(tags$b(" Paso 3. Selecciones el tipo de pozo analizar"))),
+                                           p(tags$b(HTML("<li> Selecciones el tipo de pozo analizar</li>")))),
                                        
                                        
                                        div(title="", # tooltip
-                                           awesomeCheckbox(inputId = "v_dist_pozo", label = "Pozo", value = FALSE,status="success")),
+                                           awesomeCheckbox(inputId = "v_dist_pozo", label = "Pozo", value = FALSE, status="success")),
                                        
                                        conditionalPanel(condition = "input.v_dist_pozo == true",
                                                         selectInput(inputId = "tipo_well", label = strong(""),
@@ -67,7 +65,7 @@ Well_Well_Basic <- tabItem(tabName = "Well_Well_Basic",
                                        div(title="", # tooltip
                                            style = "margin-top: 10px; margin-bottom: 20px;",
                                            radioGroupButtons("id_tipo_reserva1", 
-                                                             label= HTML("<strong>Paso 4.</strong>- Seleccione el tipo de reserva"), 
+                                                             label= HTML("<li>Seleccione el tipo de reserva. </li> "), 
                                                              choices = c("PDP"='PDP',
                                                                          "PRBP"='PRBP',
                                                                          "PSP"='PSP'),
@@ -87,7 +85,7 @@ Well_Well_Basic <- tabItem(tabName = "Well_Well_Basic",
                                 column(12,
                                        shiny::hr(),
                                        div(title="",
-                                           p(tags$b(" Paso 5. Selecciones el tipo de Brent a sensibilizar."))),
+                                           p(tags$b(HTML("<li>Selecciones el tipo de Brent a sensibilizar. </li> ")))),
                                        
                                        
                                        div(title="", # tooltip
@@ -107,14 +105,14 @@ Well_Well_Basic <- tabItem(tabName = "Well_Well_Basic",
                                 
                                 
                                 column(12,
+                                  conditionalPanel(condition = "input.v_dist_pozo == true",   
                                        shiny::hr(),
                                        div(title="", # tooltip
                                            style = "margin-top: 10px; margin-bottom: 20px;",
                                            radioGroupButtons("id_FC1",
-                                                             label= HTML("<strong>Paso 6.</strong>- Seleccione qu&eacute analisis desea explorar."),
+                                                             label= HTML("<li> Seleccione qu&eacute analisis desea explorar. </li> "),
                                                              choices = c("Distibucion Opex"='D_opex',
-                                                                         "FC en Tiempo"='fc_t',
-                                                                         "FC Descontado"='fc_d'),
+                                                                         "FC en Tiempo"='fc_t'),
                                                              checkIcon = list(yes = icon("check")),
                                                              select='fc_t' ,
                                                              justified = TRUE
@@ -122,8 +120,7 @@ Well_Well_Basic <- tabItem(tabName = "Well_Well_Basic",
                                        
                                        tags$script("$(\"input:radio[name='id_FC1'][value='D_opex']\").parent().css('background-color', '#F7DB17');"),
                                        tags$script("$(\"input:radio[name='id_FC1'][value='fc_t']\").parent().css('background-color', '#CCD32A');"),
-                                       tags$script("$(\"input:radio[name='id_FC1'][value='fc_d']\").parent().css('background-color', '#004236');"),
-                                       
+                                                  )   
                                 ),
                                 
                                 column(12,
@@ -131,7 +128,7 @@ Well_Well_Basic <- tabItem(tabName = "Well_Well_Basic",
                                        div(title="", # tooltip
                                            style = "margin-top: 10px; margin-bottom: 20px;",
                                            radioGroupButtons("id_socio1",
-                                                             label= HTML("<strong>Paso 7.</strong>- Seleccione el tipo a evaluar."),
+                                                             label= HTML("<li> Seleccione el tipo a evaluar. </li> "),
                                                              choices = c("Sin Socio"='sin_Socio',
                                                                          "Con socio"='con_socio'),
                                                              checkIcon = list(yes = icon("check")),
@@ -147,24 +144,30 @@ Well_Well_Basic <- tabItem(tabName = "Well_Well_Basic",
                    ),
                    mainPanel(width = 8,
                              fluidRow(
-                               column(3,infoBoxOutput("users_vpn1p",width = 12)),
-                               column(3,infoBoxOutput("users_vpn2p",width = 12)),
-                               column(3,infoBoxOutput("users_vpn3p",width = 12))
+                               column(3, infoBoxOutput("users_vpn1p", width = 12)),
+                               column(3, infoBoxOutput("users_vpn2p", width = 12)),
+                               column(3, infoBoxOutput("users_vpn3p", width = 12))
                              ),
-                             h4(textOutput("title_well"), style="color: black; text-align: left"),
-                             h5(textOutput("subtitle_Well"), style="color: black; text-align: left"),
+                             
+                             fluidRow(
+                             h4(textOutput("title_well"), style = "color: black; text-align: left"),
+                             h5(textOutput("subtitle_Well"), style = "color: black; text-align: left"),
+                             
                              withSpinner(plotlyOutput("vpn_pozo_basica")),
+                             
                              conditionalPanel(condition = "input.v_dist_pozo == false",
                                               
-                                              column(12, align="center", #legend
-                                                     style= "padding-bottom: 40px;",
+                                              column(12, align ="center", 
+                                                     style = "padding-bottom: 40px;",
                                                      p(column(1),
-                                                       column(2, img(src="quintile1.png", height = "16px"), "1 - VPN Positivo"), 
-                                                       column(1, img(src="quintile2.png", height = "16px"), "2 - VPN Negativo"),
+                                                       column(2, img(src = "quintile1.png", height = "16px"), "1 - VPN Positivo"), 
+                                                       column(2, img(src = "quintile2.png", height = "16px"), "2 - VPN Negativo"),
                                                        column(1)))
+                                        
                              ),
                              
                              DT::dataTableOutput("table_vpn_t_p")
+                             )
                              
                    )
 )

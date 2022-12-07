@@ -1,4 +1,9 @@
 
+    
+shinyjs::disable("id_socio1")
+    
+
+
 observe({
   
   

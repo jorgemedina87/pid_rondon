@@ -1,7 +1,7 @@
 tab_perfil <- tabItem(tabName = "tab_perfil",
                       sidebarPanel(width = 4,
                                   column(12,
-                                          div(title = "Select what aspect of inequality you want to explore.", # tooltip
+                                          div(title = "Select what aspect of inequality you want to explore.", 
                                               style = "margin-top: 10px; margin-bottom: 20px;",
                                               radioGroupButtons("id_perf_prod",
                                                                 label = shiny::HTML("Paso 1.- Seleccione qu&eacute analisis desea explorar.<br/><br/>"),
